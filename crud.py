@@ -2,7 +2,7 @@
 
 from model import db, User, Food, Location, User_food, connect_to_db
 
-def create_user(email, password, pref_contact, phone = "None"):
+def create_user(email, password, pref_contact, phone = None):
     """Create and return a new user"""
 
     user = User(email = email, 
@@ -15,11 +15,10 @@ def create_user(email, password, pref_contact, phone = "None"):
 
     return user
 
-def create_food(food_id, food_name, shelf_life, loc_id):
+def create_food(food_name, shelf_life, loc_id):
     """Create and return a new food"""
 
-    food = Food(food_id = food_id, 
-                food_name = food_name, 
+    food = Food(food_name = food_name, 
                 shelf_life = shelf_life, 
                 loc_id = loc_id)
 
@@ -41,12 +40,11 @@ def create_location(loc_id, loc_name):
 
     return location
 
-def create_user_foods(user_food_id, food_id, user_id):
+def create_user_foods(user_id, food_id):
     """Create and return new user_foods"""
 
-    user_food = User_food(user_food_id = user_food_id,
-                 food_id = food_id,
-                 user_id = user_id)
+    user_food = User_food(user_id = user_id,
+                          food_id = food_id)
 
     db.session.add(user_food)
     db.session.commit()

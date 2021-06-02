@@ -52,6 +52,7 @@ class Location(db.Model):
     __tablename__ = "location"
 
     loc_id = db.Column(db.Integer,
+                       autoincrement = True,
                        primary_key = True)
     loc_name = db.Column(db.String(12))
 
