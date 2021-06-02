@@ -4,12 +4,12 @@ from flask import (Flask, render_template, request, flash, session, redirect)
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db
 import crud
-import jinja2
+from jinja2 import StrictUndefined
 
 
 app = Flask(__name__)
 app.secret_key = "dev"
-# app.jinja_env.undefined = StrictUndefined
+app.jinja_env.undefined = StrictUndefined
 
 
 
