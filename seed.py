@@ -16,15 +16,6 @@ db.create_all()
 
 
 # Set the location
-# loc_id = 1
-# loc_name = "refrigerator"
-
-# loc_id = [1, 2, 3]
-# loc_name = ["refrigerator", "freezer", "pantry"]
-
-# Location = ((loc_id = 1, loc_name = "refrigerator"),
-#             (loc_id = 2, loc_name = "freezer"),
-#             (loc_id = 3, loc_name = "pantry"))
 
 refrigerator = Location(loc_name = "refrigerator")
 freezer = Location(loc_name = "freezer")
