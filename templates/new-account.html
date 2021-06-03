@@ -10,4 +10,18 @@
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+
+<h2>Create an account</h2>
+<form action="/users" method="POST">
+    <p>
+        Email <input type="text" name="email">
+    </p>
+    <p>
+        Password <input type="text" name="password">
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
 {% endblock %}

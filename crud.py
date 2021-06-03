@@ -51,8 +51,13 @@ def create_user_foods(user_id, food_id):
 
     return user_food
 
+def get_user_by_email(email):
 
+    return User.query.filter(User.email == email).first()
 
+def get_user_password(password):
+
+    return User.query.filter(User.password == password).first()
 
 if __name__ == '__main__':
     from server import app
