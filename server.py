@@ -12,10 +12,13 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
-def homepage():
+def show_homepage():
     """View homepage"""
-
-    return render_template("homepage.html")
+    if "user" in session:
+        return render_template("homepage.html")
+    
+    else:
+        return redirect("/login")
 
 @app.route('/users', methods=["POST"])
 def register_user():
@@ -33,9 +36,15 @@ def register_user():
 
         return redirect('login.html')
 
+@app.route("/login", methods=["GET"])
+def login_form():
+    """Show login form."""
+    return render_template("login.html")
 
 @app.route("/login", methods=["POST"])
-def login():
+def login_process():
+    """Process login."""
+
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -45,6 +54,8 @@ def login():
         user_pass = crud.get_user_password(password)
         if user_pass:
             flash("Logged In!")
+
+            session["user"] = user
 
             return redirect("/")
         else:
