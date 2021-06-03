@@ -1,10 +1,11 @@
 """Model for food exp app"""
 
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """A user."""
 
     __tablename__ = "users"
@@ -21,6 +22,11 @@ class User(db.Model):
     pref_contact = db.Column(db.String(5))
 
     # user_foods = a list of foods the user has added
+
+    def get_id(self):
+        """Override UserMixin.get_id."""
+
+        return str(self.user_id)
 
     def __repr__(self):
         return f"<User user_id = {self.user_id}, email = {self.email}>"

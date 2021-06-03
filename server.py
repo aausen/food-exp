@@ -1,8 +1,9 @@
 """Server for food expiration app"""
 
 from flask import (Flask, render_template, request, flash, session, redirect)
+from flask_login import LoginManager, login_user, login_required
 from jinja2.runtime import StrictUndefined
-from model import connect_to_db
+from model import connect_to_db, User
 import crud
 from jinja2 import StrictUndefined
 
@@ -11,14 +12,21 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
 @app.route('/')
 def show_homepage():
     """View homepage"""
-    if "user_email" in session:
-        return render_template("homepage.html")
+    # if "user_email" in session:
+    return render_template("homepage.html")
     
-    else:
-        return redirect("/login")
+    # else:
+    #     return redirect("/login")
 
 @app.route('/users', methods=["POST"])
 def register_user():
@@ -49,15 +57,28 @@ def login_process():
     password = request.form.get("password")
 
     user = crud.get_user_by_email(email)
-    if not user or user.password != password:
-        flash("The email or password you entered are incorrect.")
-        return redirect("/login")
-    else:
-        #Log in user by storing user's email in session
-        session["user_email"] = user.email
-        flash(f"Welcome back {user.email}!")
+
+    if user.password == password:
+
+        login_user(user)
+
+        flash("Logged in successfully!")
 
         return redirect("/")
+    
+    else:
+        flash("Sorry, try again.")
+        return redirect("/login")
+
+    # if not user or user.password != password:
+    #     flash("The email or password you entered are incorrect.")
+    #     return redirect("/login")
+    # else:
+    #     #Log in user by storing user's email in session
+    #     session["user_email"] = user.email
+    #     flash(f"Welcome back {user.email}!")
+
+    #     return redirect("/")
 
 
 
