@@ -29,25 +29,28 @@ def show_homepage():
     else:
         return redirect("/login")
 
-@app.route('/users', method=["GET"])
+@app.route('/register', methods=["GET"])
 def register_form():
+    """Show registration form."""
 
     return render_template('register.html')
 
-@app.route('/users', methods=["POST"])
+@app.route('/register', methods=["POST"])
 def register_process():
     """Create a new user"""
 
     email = request.form.get("email")
     password = request.form.get("password")
+    phone = request.form.get("phone")
+    pref_contact = request.form.get("pref-contact")
     user = crud.get_user_by_email(email)
 
     if user:
         flash("A user already exists with that email. Please use a different email.")
 
-        return redirect('/users')
+        return redirect('/register')
     else:
-        crud.create_user(email, password)
+        crud.create_user(email, password, pref_contact, phone=None)
         flash("Account created! Please log in.")
 
         return redirect('/login')
