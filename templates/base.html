@@ -15,6 +15,10 @@
         </p>
         {% endfor %}
 
+        <form action="/logout">
+            <button type="submit">Log Out</button>
+        </form>
+
         {% block body %}{% endblock %}
 
         {% block after_body %}{% endblock %}
