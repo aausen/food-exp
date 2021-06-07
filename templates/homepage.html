@@ -3,11 +3,17 @@
 {% block title %} User food home {% endblock %}
 
 {% block body %}
-<h1>This is where their food will be displayed</h1>
+<h1>This is all the food you have!</h1>
 
 <h2>Navigation</h2>
 <ul>
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+<div class = "search_bar">
+    <form action="">
+        <input type="text" placeholder="Search for food" name="search">
+        <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}
