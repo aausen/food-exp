@@ -1,10 +1,16 @@
 'use strict';
-const foodItem = document.getElementById('foodItem')
-const searchBar = document.getElementById('searchBar')
 
-searchBar.addEventListener('keyup', (e) => {
-    console.log(e.target.value);
-});
+// $.get('https://shelf-life-api.herokuapp.com/guides/18794', (res) => {
+//     let foodInfo = res;
+//     console.log(foodInfo);
+// })
+
+// const foodItem = document.getElementById('foodItem');
+// const searchBar = document.getElementById('searchBar');
+
+// searchBar.addEventListener('keyup', (e) => {
+//     console.log(e);
+// });
 
 // const loadFood = $.get('https://shelf-life-api.herokuapp.com/search?q=%7Bsearch_query%7D', (res) =>{
 //     let foodInfo = res;

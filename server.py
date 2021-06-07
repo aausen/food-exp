@@ -1,11 +1,12 @@
 """Server for food expiration app"""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import Flask, render_template, request, flash, session, redirect
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db, User
 import crud
 from jinja2 import StrictUndefined
+import requests
 
 
 app = Flask(__name__)
@@ -92,7 +93,10 @@ def logout():
 @app.route("/search")
 def food_search():
     """Search the api for possible foods"""
-    input_food = request.args.get("search")
+    input_food = request.args.get("search") 
+    # get request here
+    res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
+    print(res.json())
 
 if __name__ == '__main__':
     connect_to_db(app)
