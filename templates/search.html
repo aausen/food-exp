@@ -10,4 +10,14 @@
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+
+<h1>Food search results:</h1>
+<form action="/search">
+    <select id="food-select" name="search-results">
+        {% for item in food_choice %}
+        <option value={{item['id']}} >{{ item['name'] }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>
 {% endblock %}

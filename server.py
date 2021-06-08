@@ -94,8 +94,8 @@ def logout():
 def food_search():
     """Search the api for possible foods"""
     input_food = request.args.get("searchBar") 
-    print("*"*20)
-    print(input_food)
+    
+    
 
     # Get the input from the user
     payload = input_food
@@ -105,11 +105,9 @@ def food_search():
 
     # Get request to API
     res = requests.get(url, payload)
-    print(res)
 
     # Defining a variable so we can take out the &
     lst = res.url.split('&')
-    print(lst)
 
     # Putting our pieces back together 
     new_url = lst[0] + lst[1]
@@ -121,11 +119,20 @@ def food_search():
     res = res.json()
     
     #parse through the information that comes back
+    for item in res:
+        print("*"*20)
+        print(item)
+        print("*"*20)
+        food_name = item["name"]
+        print("*"*20)
+        print(food_name)
+        print("*"*20)
     #create dict with the name of the foods listed
     # return food on search page for user to choose from
     
-    print(res)
-    return jsonify(res)
+    # create a new dic in server because res is not interable 
+    return render_template('search.html',
+                            food_choice = jsonify(res))
 
     # res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
     # print(res.json())
