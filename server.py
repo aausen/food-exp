@@ -124,14 +124,7 @@ def food_search():
         food_name = item["name"]
         food_id = item['id']
         food_choice[food_id] = food_name
-    print("*"*20)
-    print(food_choice)
-    print("*"*20)
-       
-    #create dict with the name of the foods listed
-    # return food on search page for user to choose from
-    
-    # create a new dic in server because res is not interable 
+   
     return render_template('search.html',
                             food_choice = food_choice)
 
