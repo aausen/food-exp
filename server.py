@@ -1,6 +1,6 @@
 """Server for food expiration app"""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db, User
@@ -93,7 +93,9 @@ def logout():
 @app.route("/search")
 def food_search():
     """Search the api for possible foods"""
-    input_food = request.args.get("search") 
+    input_food = request.args.get("searchBar") 
+    print("*"*20)
+    print(input_food)
 
     # Get the input from the user
     payload = input_food
@@ -107,6 +109,7 @@ def food_search():
 
     # Defining a variable so we can take out the &
     lst = res.url.split('&')
+    print(lst)
 
     # Putting our pieces back together 
     new_url = lst[0] + lst[1]
@@ -117,8 +120,12 @@ def food_search():
     # JSONify the result to be used in next page
     res = res.json()
     
+    #parse through the information that comes back
+    #create dict with the name of the foods listed
+    # return food on search page for user to choose from
+    
     print(res)
-    return res
+    return jsonify(res)
 
     # res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
     # print(res.json())
