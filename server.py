@@ -47,7 +47,7 @@ def register_process():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash("A user already exists with that email. Please use a different email.")
+        flash("A user already exists with that email. Please use a different email or login with current email.")
 
         return redirect('/register')
     else:
@@ -69,8 +69,11 @@ def login_process():
     password = request.form.get("password")
 
     user = crud.get_user_by_email(email)
-
-    if user.password == password:
+    
+    if user == None:
+        flash("That is not a valid email. Please try again.")
+        return redirect("/login")
+    elif user.password == password:
 
         login_user(user)
 
@@ -126,9 +129,9 @@ def food_search():
     return render_template('search.html',
                             food_choice = food_choice)
 
-@app.route("/add-item")
+@app.route("/add-item", methods=["GET"])
 def add_item():
-    """Adds item to the user db"""
+    """Gets and displays food information on add food page"""
 
     food_id = request.args.get("select-food")
 
@@ -157,6 +160,14 @@ def add_item():
     # return jsonify(res)
     
     return render_template("add-item.html", info = res)
+
+@app.route("/add-item", methods=["POST"])
+def add_item_to_db():
+    # Trying to copy what I did with the login with one route, two methods
+    # Not sure how to grab the id from what I have available to me in the scope of
+    # the most recent get request.
+    
+    pass
 
 if __name__ == '__main__':
     connect_to_db(app)
