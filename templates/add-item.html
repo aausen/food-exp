@@ -10,4 +10,20 @@
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+
+<h2>{{ info['name'] }}</h2>
+<p>
+    Location: {{ info['methods'][0]['location'] }}
+    <br>
+    Expiration: {{ info['methods'][0]['expiration'] }}
+    <br>
+    Location: {{ info['methods'][1]['location'] }}
+    <br>
+    Expiration: {{ info['methods'][1]['expiration'] }}
+    <br>
+    Tips: {% for tip in info['tips'] %}
+    <ul>{{ tip }}</ul>
+    {% endfor %}
+</p>
+
 {% endblock %}

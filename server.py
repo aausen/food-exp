@@ -154,8 +154,9 @@ def add_item():
     res = res.json()
 
     # JSONify the response to be used on another page
-    return jsonify(res)
+    # return jsonify(res)
     
+    return render_template("add-item.html", info = res)
 
 if __name__ == '__main__':
     connect_to_db(app)
