@@ -94,9 +94,34 @@ def logout():
 def food_search():
     """Search the api for possible foods"""
     input_food = request.args.get("search") 
-    # get request here
-    res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
-    print(res.json())
+
+    # Get the input from the user
+    payload = input_food
+
+    # Define the search url
+    url = "https://shelf-life-api.herokuapp.com/search?q="
+
+    # Get request to API
+    res = requests.get(url, payload)
+    print(res)
+
+    # Defining a variable so we can take out the &
+    lst = res.url.split('&')
+
+    # Putting our pieces back together 
+    new_url = lst[0] + lst[1]
+
+    # New get request using the new_url
+    res = requests.get(new_url)
+
+    # JSONify the result to be used in next page
+    res = res.json()
+    
+    print(res)
+    return res
+
+    # res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
+    # print(res.json())
 
 if __name__ == '__main__':
     connect_to_db(app)
