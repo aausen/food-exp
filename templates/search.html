@@ -12,7 +12,7 @@
 </ul>
 
 <h1>Food search results:</h1>
-<form action="/search">
+<form action="/add-item">
     {% for id, name in food_choice.items() %}
     <input type="radio" name="select-food" value="{{ id }}">
     <label>{{ name }}</label>

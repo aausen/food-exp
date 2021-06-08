@@ -94,8 +94,6 @@ def logout():
 def food_search():
     """Search the api for possible foods"""
     input_food = request.args.get("searchBar") 
-    
-    
 
     # Get the input from the user
     payload = input_food
@@ -128,8 +126,36 @@ def food_search():
     return render_template('search.html',
                             food_choice = food_choice)
 
-    # res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
-    # print(res.json())
+@app.route("/add-item")
+def add_item():
+    """Adds item to the user db"""
+
+    food_id = request.args.get("select-food")
+
+    # Get the input from the user
+    payload = food_id
+
+    # Define the url
+    url = "https://shelf-life-api.herokuapp.com/guides/"
+
+    # Make the first request to the api to get the url
+    res = requests.get(url, payload)
+  
+    # Split the url on the ? so the request can be sent properly
+    lst = res.url.split("?")
+    
+    # Create the new url
+    new_url = lst[0] + lst[1]
+
+    # Send a get request for the food info
+    res = requests.get(new_url)
+
+    # Create a json object
+    res = res.json()
+
+    # JSONify the response to be used on another page
+    return jsonify(res)
+    
 
 if __name__ == '__main__':
     connect_to_db(app)
