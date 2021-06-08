@@ -115,24 +115,25 @@ def food_search():
     # New get request using the new_url
     res = requests.get(new_url)
 
-    # JSONify the result to be used in next page
+    # JSONify the result to be used in next step
     res = res.json()
     
-    #parse through the information that comes back
-    for item in res:
-        print("*"*20)
-        print(item)
-        print("*"*20)
+    #parse through the information that comes back from res
+    food_choice = {}
+    for item in res: 
         food_name = item["name"]
-        print("*"*20)
-        print(food_name)
-        print("*"*20)
+        food_id = item['id']
+        food_choice[food_id] = food_name
+    print("*"*20)
+    print(food_choice)
+    print("*"*20)
+       
     #create dict with the name of the foods listed
     # return food on search page for user to choose from
     
     # create a new dic in server because res is not interable 
     return render_template('search.html',
-                            food_choice = jsonify(res))
+                            food_choice = food_choice)
 
     # res = requests.get('https://shelf-life-api.herokuapp.com/guides/18794')
     # print(res.json())

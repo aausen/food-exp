@@ -13,11 +13,9 @@
 
 <h1>Food search results:</h1>
 <form action="/search">
-    <select id="food-select" name="search-results">
-        {% for item in food_choice %}
-        <option value={{item['id']}} >{{ item['name'] }}</option>
-        {% endfor %}
-    </select>
+    {% for item in food_choice %}
+    <ul> {{ item.name }}</ul>
+    {% endfor %}
     <input type="submit">
 </form>
 {% endblock %}
