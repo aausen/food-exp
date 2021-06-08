@@ -13,8 +13,8 @@
 
 <h1>Food search results:</h1>
 <form action="/search">
-    {% for item in food_choice %}
-    <ul> {{ item.name }}</ul>
+    {% for item in food_choice.values() %}
+    <ul> {{ item }}</ul>
     {% endfor %}
     <input type="submit">
 </form>
