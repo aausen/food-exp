@@ -169,22 +169,20 @@ def add_item_to_db():
 
     # Get food info from radio button submit
     food_info = request.form.get("add-food")
-    print("*"*20)
-    print(food_info)
+    # Split the list of values at the ,
     lst = food_info.split(',')
+    # Get the food_name
     food_name= lst[:-2]
+    #make food_name into a string. It is a list right now
     str_food = ""
     for item in food_name:
         str_food = str_food + item
-    
-    print(str_food)
-    
+    # Get food_loc
     food_loc = lst[-2]
-    print(food_loc)
+    # Get expiration time 
     exp_time = lst[-1]
-    print(exp_time)
-    print("*"*20)
-    # check if location exists
+
+    # Check if location exists
     loc = crud.get_loc_by_name(food_loc)
     if loc == None:
         new_loc = crud.create_location(food_loc)
@@ -192,12 +190,18 @@ def add_item_to_db():
     else: 
         loc_id = loc.loc_id
 
+    # Check if food exists
     new_food = crud.get_food_by_name(str_food)
     if new_food == None:
         new_food = crud.create_food(str_food, exp_time, loc_id)
+    # Get user_id
+    user_id = current_user.get_id()
+    # Get food_id from food table
+    
     # connect user to food
+    crud.create_user_foods(user_id, food_id)
 
-    return redirect('/homepage')
+    return redirect('/')
    
 
 if __name__ == '__main__':

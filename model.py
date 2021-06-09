@@ -40,7 +40,7 @@ class Food(db.Model):
     food_id = db.Column(db.Integer, 
                         autoincrement = True,
                         primary_key = True)
-    food_name = db.Column(db.String(30))
+    food_name = db.Column(db.String(50))
     shelf_life = db.Column(db.Integer)
     loc_id = db.Column(db.Integer, 
                        db.ForeignKey("location.loc_id"),
