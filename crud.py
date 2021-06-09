@@ -29,11 +29,10 @@ def create_food(food_name, shelf_life, loc_id):
     return food
 
 
-def create_location(loc_id, loc_name):
+def create_location(loc_name):
     """Create and return a location"""
 
-    location = Location(loc_id = loc_id,
-                loc_name = loc_name)
+    location = Location(loc_name = loc_name)
 
     db.session.add(location)
     db.session.commit()
@@ -58,6 +57,10 @@ def get_user_by_email(email):
 def get_user_password(password):
 
     return User.query.filter(User.password == password).first()
+
+def get_loc_by_name(food_loc):
+
+    return Location.query.filter(Location.loc_name == food_loc).first()
 
 if __name__ == '__main__':
     from server import app

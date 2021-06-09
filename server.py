@@ -166,22 +166,20 @@ def add_item():
 @app.route("/add-item", methods=["POST"])
 def add_item_to_db():
     """Adds new food to user db"""
-    # Trying to copy what I did with the login with one route, two methods
-    # Not sure how to grab the id from what I have available to me in the scope of
-    # the most recent get request.
 
-    # Get food id from button
-    food_id = request.form.get("add-food")
-    print("*"*20)
-    print(food_id)
-    print("*"*20)
-    # Get user_id from 
-    # user_id = current_user.get_id()
-    # print("*"*20)
-    # print(user_id)
-    # print("*"*20)
-    return food_id
-    # pass
+    # Get food info from radio button submit
+    food_info = request.form.get("add-food")
+    lst = food_info.split(',')
+    food_name= lst[0]
+    food_loc = lst[1]
+    exp_time = lst[2]
+    # check if location exists
+    loc = crud.get_loc_by_name(food_loc)
+    if loc == None:
+        crud.create_location(food_loc)
+
+   
+   
 
 if __name__ == '__main__':
     connect_to_db(app)

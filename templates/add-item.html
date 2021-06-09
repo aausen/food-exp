@@ -12,12 +12,24 @@
 </ul>
 
 <h2>{{ info['name'] }}</h2>
-<form action="/">
-    <button type="submit" name= "add-food"  value="{{ food_id }}" method="POST">Add food</button>
-</form>
 <a href="/">Search</a>
+<form action="/add-item" method="POST">
+  
+    <p>
+        Select a place to store your food
+    </p>
+    <input type="radio" name="add-food" value="{{ info['name'] }},{{info['methods'][0]['location'] }},{{ info['methods'][0]['expirationTime'] }}">
+    <label>{{ info['methods'][0]['location'] }}</label>
+
+    <input type="radio" name="add-food" value="{{ info['name'] }},{{info['methods'][1]['location'] }},{{ info['methods'][1]['expirationTime'] }}">
+    <label>{{ info['methods'][1]['location'] }}</label>
+    <button type="submit">Add food</button>
+</form>
+
 <p>
     Location: {{ info['methods'][0]['location'] }}
+    <!--value of radio buttons will be location and expiration 
+    value='location&expiration' then split res on-->
     <br>
     Expiration: {{ info['methods'][0]['expiration'] }}
     <br>
