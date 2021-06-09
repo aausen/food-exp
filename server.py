@@ -159,15 +159,29 @@ def add_item():
     # JSONify the response to be used on another page
     # return jsonify(res)
     
-    return render_template("add-item.html", info = res)
+    return render_template("add-item.html", 
+                            info = res, 
+                            food_id = food_id)
 
 @app.route("/add-item", methods=["POST"])
 def add_item_to_db():
+    """Adds new food to user db"""
     # Trying to copy what I did with the login with one route, two methods
     # Not sure how to grab the id from what I have available to me in the scope of
     # the most recent get request.
-    
-    pass
+
+    # Get food id from button
+    food_id = request.form.get("add-food")
+    print("*"*20)
+    print(food_id)
+    print("*"*20)
+    # Get user_id from 
+    # user_id = current_user.get_id()
+    # print("*"*20)
+    # print(user_id)
+    # print("*"*20)
+    return food_id
+    # pass
 
 if __name__ == '__main__':
     connect_to_db(app)
