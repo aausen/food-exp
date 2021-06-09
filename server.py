@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
-from model import connect_to_db, User
+from model import connect_to_db, User, Location
 import crud
 from jinja2 import StrictUndefined
 import requests
@@ -169,18 +169,35 @@ def add_item_to_db():
 
     # Get food info from radio button submit
     food_info = request.form.get("add-food")
+    print("*"*20)
+    print(food_info)
     lst = food_info.split(',')
-    food_name= lst[0]
-    food_loc = lst[1]
-    exp_time = lst[2]
+    food_name= lst[:-2]
+    str_food = ""
+    for item in food_name:
+        str_food = str_food + item
+    
+    print(str_food)
+    
+    food_loc = lst[-2]
+    print(food_loc)
+    exp_time = lst[-1]
+    print(exp_time)
+    print("*"*20)
     # check if location exists
     loc = crud.get_loc_by_name(food_loc)
     if loc == None:
-        crud.create_location(food_loc)
+        new_loc = crud.create_location(food_loc)
+        loc_id = new_loc.loc_id
     else: 
-        loc_id == Location.loc_id
+        loc_id = loc.loc_id
 
-    
+    new_food = crud.get_food_by_name(str_food)
+    if new_food == None:
+        new_food = crud.create_food(str_food, exp_time, loc_id)
+    # connect user to food
+
+    return redirect('/homepage')
    
 
 if __name__ == '__main__':

@@ -62,6 +62,10 @@ def get_loc_by_name(food_loc):
 
     return Location.query.filter(Location.loc_name == food_loc).first()
 
+def get_food_by_name(food_name):
+
+    return Food.query.filter(Food.food_name == food_name).first()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
