@@ -177,8 +177,10 @@ def add_item_to_db():
     loc = crud.get_loc_by_name(food_loc)
     if loc == None:
         crud.create_location(food_loc)
+    else: 
+        loc_id == Location.loc_id
 
-   
+    
    
 
 if __name__ == '__main__':
