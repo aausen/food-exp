@@ -197,9 +197,12 @@ def add_item_to_db():
     # Get user_id
     user_id = current_user.get_id()
     # Get food_id from food table
-    
+    food_id = new_food.food_id
     # connect user to food
-    crud.create_user_foods(user_id, food_id)
+    user_food = crud.create_user_foods(user_id, food_id)
+    print("*"*20)
+    print(user_food)
+    print("*"*20)
 
     return redirect('/')
    
