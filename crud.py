@@ -66,6 +66,16 @@ def get_food_by_name(food_name):
 
     return Food.query.filter(Food.food_name == food_name).first()
 
+def get_user_food(user_id):
+    """Returns a list of user_food objects"""
+
+    return User_food.query.filter(User_food.user_id == user_id).all()
+
+def get_food_by_id(food_id):
+    """Return food information by food_id"""
+
+    return Food.query.filter(Food.food_id == food_id).all()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

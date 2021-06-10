@@ -25,7 +25,16 @@ def load_user(user_id):
 def show_homepage():
     """View homepage"""
     if current_user.is_authenticated:
-        return render_template("homepage.html")
+        user_id = current_user.get_id()
+        user_food = crud.get_user_food(user_id)
+      
+        # food_id = user_food.food_id
+        for item in user_food:
+            food_id = item.food_id
+            food_by_user = crud.get_food_by_id(food_id)
+            
+        return render_template("homepage.html",
+                                food_by_user = food_by_user)
     
     else:
         return redirect("/login")
