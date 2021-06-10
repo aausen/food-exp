@@ -76,6 +76,10 @@ def get_food_by_id(food_id):
 
     return Food.query.filter(Food.food_id == food_id).all()
 
+def get_loc_by_loc_id(loc_id):
+
+    return Location.query.filter(Location.loc_id == loc_id).first()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

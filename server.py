@@ -27,14 +27,36 @@ def show_homepage():
     if current_user.is_authenticated:
         user_id = current_user.get_id()
         user_food = crud.get_user_food(user_id)
+        # print("*"*20)
+        # print(user_food)
+        # print("*"*20)
       
         # food_id = user_food.food_id
+        food_by_user = []
         for item in user_food:
             food_id = item.food_id
-            food_by_user = crud.get_food_by_id(food_id)
+            food_lst = crud.get_food_by_id(food_id)
+          
+            final_lst = []
+            for lst in food_lst:
+                name = lst.food_name
+                loc_id = lst.loc_id
+                loc_name_obj = crud.get_loc_by_loc_id(loc_id)
+                loc_name = loc_name_obj.loc_name
+                food_tuple = (name, loc_name)
+                # print("*"*20)
+                # print(food_tuple)
+                # print("*"*20)
+                final_lst.append((name, loc_name))
+            print("*"*20)
+            print(final_lst)
+            print("*"*20)
+           
+
+      
             
         return render_template("homepage.html",
-                                food_by_user = food_by_user)
+                                final_lst = final_lst)
     
     else:
         return redirect("/login")

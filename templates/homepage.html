@@ -31,6 +31,10 @@
 
 <section>
     <h2>Food list here</h2>
-    <ul id="foodItem">{{ food_by_user }}</ul>
+    {% for item in final_lst %}
+        {% for name, loc in item %}
+    <ul id="foodItem">{{ name }} {{ loc }}</ul>
+        {% endfor %}
+    {% endfor %}
 </section>
 {% endblock %}
