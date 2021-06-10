@@ -31,10 +31,9 @@
 
 <section>
     <h2>Food list here</h2>
-    {% for item in final_lst %}
-        {% for name, loc in item %}
-    <ul id="foodItem">{{ name }} {{ loc }}</ul>
-        {% endfor %}
+        {% for name, loc in final_lst %}
+    <ul id="foodItem"><li>Food: {{ name }}, Location: {{ loc }}</li></ul>
+       
     {% endfor %}
 </section>
 {% endblock %}

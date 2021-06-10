@@ -39,11 +39,15 @@ def create_location(loc_name):
 
     return location
 
-def create_user_foods(user_id, food_id):
+def create_user_foods(user_id, food_id, start_date):
     """Create and return new user_foods"""
-
+   
+    # expiration_date = Food.query.get(food_id).exp_date
+    # end_date = Do enddate math here
     user_food = User_food(user_id = user_id,
-                          food_id = food_id)
+                          food_id = food_id,
+                          start_date = datetime.datetime.now(),
+                          end_date = end_date)
 
     db.session.add(user_food)
     db.session.commit()

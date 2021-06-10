@@ -40,7 +40,7 @@ class Food(db.Model):
     food_id = db.Column(db.Integer, 
                         autoincrement = True,
                         primary_key = True)
-    food_name = db.Column(db.String(50))
+    food_name = db.Column(db.String)
     shelf_life = db.Column(db.Integer)
     loc_id = db.Column(db.Integer, 
                        db.ForeignKey("location.loc_id"),
@@ -80,6 +80,8 @@ class User_food(db.Model):
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'),
                         nullable = False)
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
 
     user = db.relationship("User", backref = "user_foods")
     food = db.relationship("Food", backref = "user_foods")
