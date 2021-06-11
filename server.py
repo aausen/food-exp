@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
-from model import connect_to_db, User, Location
+from model import connect_to_db, User, Location, User_food
 import crud
 from jinja2 import StrictUndefined
 import requests
@@ -27,27 +27,57 @@ def show_homepage():
     if current_user.is_authenticated:
         user_id = current_user.get_id()
         user_food = crud.get_user_food(user_id)
+        print("*"*20)
+        print("user food", user_food)
+        print("*"*20)
+        
    
         food_by_user = []
         for item in user_food:
+            exp = item.end_date
+            str_exp = str(exp)
+            print("*"*20)
+            print("exp", type(exp))
+            print("*"*20)
             food_id = item.food_id
             food_lst = crud.get_food_by_id(food_id)
-            food_by_user.append(food_lst)
-
- 
-        final_lst = []
-        for lst in food_by_user:
-            for food in lst:
-                name = food.food_name
+            for food in food_lst:
+                food_id = food.food_id
+                food_name = food.food_name
                 loc_id = food.loc_id
                 loc_name_obj = crud.get_loc_by_loc_id(loc_id)
                 loc_name = loc_name_obj.loc_name
-                # food_tuple = (name, loc_name)
-                final_lst.append((name, loc_name))
+
+                food_by_user.append((food_name, loc_name, str_exp))
+        print("*"*20)
+        print("LOOK NOW", food_by_user)
+        print("*"*20)
+        #     print("*"*20)
+        #     print("food list", food_lst)
+        #     print("*"*20)
+        #     new = [food_lst, str_exp]
+        #     food_by_user.extend(new)
+        # print("*"*20)
+        # print("LOOK HERE", food_by_user)
+        # print("*"*20)
+ 
+        # final_lst = []
+        # for lst in food_by_user:
+        #     for food in lst:
+        #         print("*"*20)
+        #         print("food", food)
+        #         print("*"*20)
+        #         name = food.food_name
+                
+        #         loc_id = food.loc_id
+        #         loc_name_obj = crud.get_loc_by_loc_id(loc_id)
+        #         loc_name = loc_name_obj.loc_name
+                
+        #         final_lst.append((name, loc_name))
         
 
         return render_template("homepage.html",
-                                final_lst = final_lst)
+                                food_by_user = food_by_user)
     
     else:
         return redirect("/login")
@@ -191,9 +221,7 @@ def add_item_to_db():
 
     # Get food info from radio button submit
     food_info = request.form.get("add-food")
-    print("*"*20)
-    print(food_info)
-    print("*"*20)
+
     # Split the list of values at the ,
     lst = food_info.split(',')
     # Get the food_name
@@ -204,17 +232,12 @@ def add_item_to_db():
         str_food = str_food + item
     # Get food_loc
     food_loc = lst[-2]
-    print("*"*20)
-    print("food loc", food_loc)
-    print("*"*20)
+
     # Get expiration time 
     exp_time = lst[-1]
 
     # Check if location exists
     loc = crud.get_loc_by_name(food_loc)
-    print("*"*20)
-    print("loc", loc)
-    print("*"*20)
     if loc == None:
         new_loc = crud.create_location(food_loc)
         loc_id = new_loc.loc_id
@@ -230,10 +253,8 @@ def add_item_to_db():
     # Get food_id from food table
     food_id = new_food.food_id
     # connect user to food
-    user_food = crud.create_user_foods(user_id, food_id, start_date, end_date)
-    print("*"*20)
-    print(user_food)
-    print("*"*20)
+    user_food = crud.create_user_foods(user_id, food_id)
+
 
     return redirect('/')
    

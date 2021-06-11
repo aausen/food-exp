@@ -40,13 +40,16 @@ def create_location(loc_name):
 
     return location
 
-def create_user_foods(user_id, food_id, start_date):
+def create_user_foods(user_id, food_id):
     """Create and return new user_foods"""
-   
-    exp_date = Food.query.get(food_id).exp_date
-    # end_date = Do enddate math here
+
+    # Get shelf_life from api stored in db
+    exp_date = Food.query.get(food_id).shelf_life
+    # Create a start date
     start_date = datetime.now()
+    # Create timedelta variable to use in datetime math
     delta = timedelta(seconds=exp_date)
+    # Create end date for the food based on information before this
     end_date = start_date + delta
     user_food = User_food(user_id = user_id,
                           food_id = food_id,
@@ -87,6 +90,7 @@ def get_food_by_id(food_id):
 def get_loc_by_loc_id(loc_id):
 
     return Location.query.filter(Location.loc_id == loc_id).first()
+
 
 if __name__ == '__main__':
     from server import app

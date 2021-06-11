@@ -31,8 +31,8 @@
 
 <section>
     <h2>Food list here</h2>
-        {% for name, loc in final_lst %}
-    <ul id="foodItem"><li>Food: {{ name }}, Location: {{ loc }}</li></ul>
+        {% for name, loc, exp in food_by_user %}
+    <ul id="foodItem"><li>Food: {{ name }}, Location: {{ loc }} Expiration date: {{ exp }}</li></ul>
        
     {% endfor %}
 </section>
