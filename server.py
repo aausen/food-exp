@@ -49,31 +49,6 @@ def show_homepage():
                 loc_name = loc_name_obj.loc_name
 
                 food_by_user.append((food_name, loc_name, str_exp))
-        print("*"*20)
-        print("LOOK NOW", food_by_user)
-        print("*"*20)
-        #     print("*"*20)
-        #     print("food list", food_lst)
-        #     print("*"*20)
-        #     new = [food_lst, str_exp]
-        #     food_by_user.extend(new)
-        # print("*"*20)
-        # print("LOOK HERE", food_by_user)
-        # print("*"*20)
- 
-        # final_lst = []
-        # for lst in food_by_user:
-        #     for food in lst:
-        #         print("*"*20)
-        #         print("food", food)
-        #         print("*"*20)
-        #         name = food.food_name
-                
-        #         loc_id = food.loc_id
-        #         loc_name_obj = crud.get_loc_by_loc_id(loc_id)
-        #         loc_name = loc_name_obj.loc_name
-                
-        #         final_lst.append((name, loc_name))
         
 
         return render_template("homepage.html",
@@ -82,6 +57,7 @@ def show_homepage():
     else:
         return redirect("/login")
 
+#____________________________________Register_______________________________________#
 @app.route('/register', methods=["GET"])
 def register_form():
     """Show registration form."""
@@ -108,6 +84,7 @@ def register_process():
 
         return redirect('/login')
 
+#___________________________________Login___________________________________________#
 @app.route("/login", methods=["GET"])
 def login_form():
     """Show login form."""
@@ -145,6 +122,7 @@ def logout():
 
     return redirect('/login')
 
+#________________________________Search_______________________________________________#
 @app.route("/search")
 def food_search():
     """Search the api for possible foods"""

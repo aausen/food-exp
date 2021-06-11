@@ -28,8 +28,6 @@
 
 <p>
     Location: {{ info['methods'][0]['location'] }}
-    <!--value of radio buttons will be location and expiration 
-    value='location&expiration' then split res on-->
     <br>
     Expiration: {{ info['methods'][0]['expiration'] }}
     <br>
@@ -37,8 +35,9 @@
     <br>
     Expiration: {{ info['methods'][1]['expiration'] }}
     <br>
-    Tips: {% for tip in info['tips'] %}
-    <ul>{{ tip }}</ul>
+    Tips: 
+    {% for tip in info['tips'] %}
+    <ul><li>{{ tip }}</li></ul>
     {% endfor %}
 </p>
 
