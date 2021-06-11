@@ -1,6 +1,7 @@
 """CRUD operations"""
 
 from model import db, User, Food, Location, User_food, connect_to_db
+from datetime import datetime, timedelta
 
 def create_user(email, password, pref_contact, phone = None):
     """Create and return a new user"""
@@ -42,11 +43,14 @@ def create_location(loc_name):
 def create_user_foods(user_id, food_id, start_date):
     """Create and return new user_foods"""
    
-    # expiration_date = Food.query.get(food_id).exp_date
+    exp_date = Food.query.get(food_id).exp_date
     # end_date = Do enddate math here
+    start_date = datetime.now()
+    delta = timedelta(seconds=exp_date)
+    end_date = start_date + delta
     user_food = User_food(user_id = user_id,
                           food_id = food_id,
-                          start_date = datetime.datetime.now(),
+                          start_date = start_date,
                           end_date = end_date)
 
     db.session.add(user_food)

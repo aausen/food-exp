@@ -230,7 +230,7 @@ def add_item_to_db():
     # Get food_id from food table
     food_id = new_food.food_id
     # connect user to food
-    user_food = crud.create_user_foods(user_id, food_id)
+    user_food = crud.create_user_foods(user_id, food_id, start_date, end_date)
     print("*"*20)
     print(user_food)
     print("*"*20)
