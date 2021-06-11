@@ -8,7 +8,18 @@
     src="https://code.jquery.com/jquery-3.6.0.js" 
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
     crossorigin="anonymous"></script>
-<!-- <script src="/static/homepage.js"></script> -->
+<script src="/static/homepage.js"></script>
+
+    {% if g.jasmine_tests %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.7.1/jasmine.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.7.1/jasmine-html.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.7.1/boot.min.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.7.1/jasmine.min.css"
+      />
+    {% endif %}
+
 {% endblock%}
 
 {% block body %}
@@ -32,7 +43,7 @@
 <section>
     <h2>Food list here</h2>
         {% for name, loc, exp in food_by_user %}
-    <ul id="foodItem"><li>Food: {{ name }}, Location: {{ loc }} Expiration date: {{ exp }}</li></ul>
+    <ul><li id="foodItem">Food: {{ name }}, Location: {{ loc }} Expiration date: <span id="exp_date">{{ exp }}</span></li></ul>
        
     {% endfor %}
 </section>

@@ -1,6 +1,6 @@
 """Server for food expiration app"""
 
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, jsonify, g
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db, User, Location, User_food
@@ -12,6 +12,7 @@ import requests
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
+JS_TESTING_MODE = False
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -21,33 +22,39 @@ def load_user(user_id):
     
     return User.query.get(user_id)
 
+@app.before_request
+def add_tests():
+    g.jasmine_tests = JS_TESTING_MODE
+
 @app.route('/')
 def show_homepage():
     """View homepage"""
     if current_user.is_authenticated:
         user_id = current_user.get_id()
         user_food = crud.get_user_food(user_id)
-        print("*"*20)
-        print("user food", user_food)
-        print("*"*20)
-        
+       
    
         food_by_user = []
         for item in user_food:
+            # Get exp date from db
             exp = item.end_date
+            # Make datetime obj a string
             str_exp = str(exp)
-            print("*"*20)
-            print("exp", type(exp))
-            print("*"*20)
+            # Get food_id from db
             food_id = item.food_id
+            # Use food_id to get list of foods
             food_lst = crud.get_food_by_id(food_id)
             for food in food_lst:
+                # Get food id
                 food_id = food.food_id
+                #Get food name
                 food_name = food.food_name
+                # Get location id
                 loc_id = food.loc_id
+                # Get name of the location based on id
                 loc_name_obj = crud.get_loc_by_loc_id(loc_id)
                 loc_name = loc_name_obj.loc_name
-
+                # Add name, location, and exp date to list of user foods 
                 food_by_user.append((food_name, loc_name, str_exp))
         
 
@@ -239,4 +246,9 @@ def add_item_to_db():
 
 if __name__ == '__main__':
     connect_to_db(app)
+
+    import sys
+    if sys.argv[-1] == "jstest":
+        JS_TESTING_MODE = True
+
     app.run(host='0.0.0.0', debug = True)
