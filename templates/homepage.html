@@ -55,12 +55,12 @@
             <th>Location</th>
             <th>Expiration Date</th>
         </tr>
-        {% for name, loc, exp in food_by_user %}
+        {% for food_id, name, loc, exp in food_by_user %}
         <tr>
         
         <td>{{ name }}</td>
         <td>{{ loc }}</td>
-        <td>{{ exp }}</td>
+        <td id="{{ food_id }}">{{ exp }}</td>
         
         </tr>
         {% endfor %}

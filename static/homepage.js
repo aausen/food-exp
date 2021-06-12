@@ -1,13 +1,13 @@
 'use strict';
 
-// const expDate = document.getElementById('exp_date').value;
+// const expDate = document.getElementById("{{ food_id }}").val;
 //     console.log(expDate)
 //     const timeNow = new Date();
 //     if(expDate == timeNow){
 //         expDate.style.color = 'red';
 //     }
 
-// console.log(new Date())
+console.log(new Date())
 
 
 // let exp_date = document.getElementsByClassName('exp_date');
