@@ -1,11 +1,13 @@
 'use strict';
 
-// const expDate = document.getElementById("{{ food_id }}").val;
-//     console.log(expDate)
-//     const timeNow = new Date();
-//     if(expDate == timeNow){
-//         expDate.style.color = 'red';
-//     }
+let td = document.querySelectorAll('td');
+let foodCount = td.length/3
+console.log(td)
+    // console.log(expDate)
+    const timeNow = new Date();
+    if(expDate == timeNow){
+        expDate.style.color = 'red';
+    }
 
 console.log(new Date())
 

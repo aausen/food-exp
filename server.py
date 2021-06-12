@@ -32,7 +32,6 @@ def show_homepage():
     if current_user.is_authenticated:
         user_id = current_user.get_id()
         user_food = crud.get_user_food(user_id)
-       
    
         food_by_user = []
         for item in user_food:
@@ -47,9 +46,6 @@ def show_homepage():
             for food in food_lst:
                 # Get food id
                 food_id = food.food_id
-                print("*"*20)
-                print("food id: ", food_id)
-                print("*"*20)
                 #Get food name
                 food_name = food.food_name
                 # Get location id
@@ -59,7 +55,6 @@ def show_homepage():
                 loc_name = loc_name_obj.loc_name
                 # Add name, location, and exp date to list of user foods 
                 food_by_user.append((food_id, food_name, loc_name, str_exp))
-        
 
         return render_template("homepage.html",
                                 food_by_user = food_by_user)
