@@ -24,5 +24,5 @@
 
 // }
 
-let table = document.getElementsByClassName('exp_date').val();
-console.log(table);
+// let table = document.getElementsByClassName('exp_date');
+// console.log(table);
