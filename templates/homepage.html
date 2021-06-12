@@ -42,9 +42,30 @@
 
 <section>
     <h2>Food list here</h2>
-        {% for name, loc, exp in food_by_user %}
-    <ul><li id="foodItem">Food: {{ name }}, Location: {{ loc }} Expiration date: <span id="exp_date">{{ exp }}</span></li></ul>
        
-    {% endfor %}
+    
+    <table id="mytable">
+        <colgroup>
+            <col>
+            <col>
+            <col name="exp_date">
+        </colgroup>
+        <tr>
+            <th>Food name</th>
+            <th>Location</th>
+            <th>Expiration Date</th>
+        </tr>
+        {% for name, loc, exp in food_by_user %}
+        <tr>
+        
+        <td>{{ name }}</td>
+        <td>{{ loc }}</td>
+        <td>{{ exp }}</td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+       
+    
 </section>
 {% endblock %}
