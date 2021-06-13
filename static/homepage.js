@@ -13,7 +13,9 @@ while (i < td.length){
 
 for (let dateExp of expDateArray) {
     console.log(dateExp);
-    const timeNow = new Date();
+    let timeNow = new Date();
+    timeNow = timeNow.toString();
+    console.log(timeNow);
     if(dateExp == timeNow){
         dateExp.style.color = 'red';
         }
