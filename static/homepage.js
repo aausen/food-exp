@@ -1,30 +1,25 @@
 'use strict';
 
 let td = document.querySelectorAll('td');
-let foodCount = td.length/3
-console.log(td)
-    // console.log(expDate)
+let foodCount = td.length/3;
+let i = 2;
+const expDateArray = []
+while (i < td.length){
+    let expDate = td[i].innerHTML;
+    expDateArray.push(expDate)
+    i = i + 3;
+    
+}
+
+for (let dateExp of expDateArray) {
+    console.log(dateExp);
     const timeNow = new Date();
-    if(expDate == timeNow){
-        expDate.style.color = 'red';
-    }
+    if(dateExp == timeNow){
+        dateExp.style.color = 'red';
+        }
+}
 
-console.log(new Date())
+    
+console.log(expDateArray);
 
-
-// let exp_date = document.getElementsByClassName('exp_date');
-// const table = document.getElementsByClassName('table');
-// tbody = table.tBodies[0].rows.length;
-
-// console.log(tbody);
-// console.log(exp_date.rows.length);
-// for (let i =0; i < exp_date.length; i++) {
-
-//     let table = tables[i];
-
-//     table.setAttribute("id", i + 1);
-
-// }
-
-// let table = document.getElementsByClassName('exp_date');
-// console.log(table);
+console.log(new Date());
