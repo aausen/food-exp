@@ -12,16 +12,18 @@ while (i < td.length){
 }
 
 for (let dateExp of expDateArray) {
-    console.log(dateExp);
+    // console.log(dateExp);
     let timeNow = new Date();
-    timeNow = timeNow.toString();
+    dateExp = new Date(dateExp);
+    console.log(dateExp);
+    // timeNow = timeNow.toDateString();
     console.log(timeNow);
-    if(dateExp == timeNow){
+    if(timeNow >= dateExp){
         dateExp.style.color = 'red';
         }
 }
 
     
-console.log(expDateArray);
+// console.log(expDateArray);
 
-console.log(new Date());
+// console.log(new Date());

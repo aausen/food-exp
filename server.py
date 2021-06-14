@@ -38,7 +38,7 @@ def show_homepage():
             # Get exp date from db
             exp = item.end_date
             # Make datetime obj a string
-            str_exp = exp.strftime("%a %b %d %Y %H:%M:%S %z %Z")
+            str_exp = exp.strftime("%a %b %d %Y")
             # Get food_id from db
             food_id = item.food_id
             # Use food_id to get list of foods
