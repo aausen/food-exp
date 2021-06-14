@@ -31,6 +31,7 @@ def show_homepage():
     """View homepage"""
     if current_user.is_authenticated:
         user_id = current_user.get_id()
+        # Returns a list of user_food objects for the user
         user_food = crud.get_user_food(user_id)
    
         food_by_user = []
@@ -41,6 +42,8 @@ def show_homepage():
             str_exp = exp.strftime("%a %b %d %Y")
             # Get food_id from db
             food_id = item.food_id
+            # Get user_food id
+            user_food_id = item.user_food_id
             # Use food_id to get list of foods
             food_lst = crud.get_food_by_id(food_id)
             for food in food_lst:
@@ -54,7 +57,7 @@ def show_homepage():
                 loc_name_obj = crud.get_loc_by_loc_id(loc_id)
                 loc_name = loc_name_obj.loc_name
                 # Add name, location, and exp date to list of user foods 
-                food_by_user.append((food_id, food_name, loc_name, str_exp))
+                food_by_user.append((food_id, food_name, loc_name, str_exp, user_food_id))
 
         return render_template("homepage.html",
                                 food_by_user = food_by_user)
@@ -65,9 +68,13 @@ def show_homepage():
 
 @app.route("/delete", methods=["POST"])
 def delete():
+    user_food_id = request.form.get("delete-food")
 
-    food_id = request.forms.get("delete-food")
-    
+    crud.delete_food_from_db(user_food_id)
+
+    return redirect('/')
+  
+
 
 #____________________________________Register_______________________________________#
 @app.route('/register', methods=["GET"])

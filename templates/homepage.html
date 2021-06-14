@@ -52,13 +52,13 @@
             <th>Expiration Date</th>
             <th>Delete</th>
         </tr>
-        {% for food_id, name, loc, exp in food_by_user %}
+        {% for food_id, name, loc, exp, user_food_id in food_by_user %}
         <tr>
         
         <td>{{ name }}</td>
         <td>{{ loc }}</td>
         <td>{{ exp }}</td>
-        <td><form action="/delete" method="POST"><button type="submit" name="delete-food" value="{{ food_id }}">Delete</button></form></td>
+        <td><form action="/delete" method="POST"><button type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
         
         </tr>
         {% endfor %}
