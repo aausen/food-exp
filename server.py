@@ -62,6 +62,13 @@ def show_homepage():
     else:
         return redirect("/login")
 
+
+@app.route("/delete", methods=["POST"])
+def delete():
+
+    food_id = request.forms.get("delete-food")
+    
+
 #____________________________________Register_______________________________________#
 @app.route('/register', methods=["GET"])
 def register_form():

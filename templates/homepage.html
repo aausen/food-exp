@@ -57,8 +57,8 @@
         
         <td>{{ name }}</td>
         <td>{{ loc }}</td>
-        <td id="{{ food_id }}">{{ exp }}</td>
-        <td><button type="submit">Delete</button></td>
+        <td>{{ exp }}</td>
+        <td><form action="/delete" method="POST"><button type="submit" name="delete-food" value="{{ food_id }}">Delete</button></form></td>
         
         </tr>
         {% endfor %}

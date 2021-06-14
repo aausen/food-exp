@@ -91,6 +91,13 @@ def get_loc_by_loc_id(loc_id):
 
     return Location.query.filter(Location.loc_id == loc_id).first()
 
+def delete_food_from_db(user_food_id):
+
+    del_food = User_food.query.filter(User_food.user_food_id == user_food_id).first()
+    db.session.delete(del_food)
+    db.session.commit()
+    
+
 
 if __name__ == '__main__':
     from server import app
