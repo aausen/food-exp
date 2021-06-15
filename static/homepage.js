@@ -9,8 +9,8 @@ while (i < td.length){
     let expDate = td[i].innerHTML;
     expDateObjs.push(td[i]);
     expDateArray.push(expDate);
-    i = i + 3;
-    
+    i = i + 4;
+
 }
 
 let counter = 0;
@@ -25,8 +25,3 @@ for (let dateExp of expDateArray) {
 }
 
 
-    
-// console.log(expDateArray);
-
-// console.log(new Date());
-// dateExp.style.color = 'red'
