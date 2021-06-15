@@ -204,12 +204,28 @@ def add_item():
 
     # Create a json object
     res = res.json()
+    print("*"*20)
+    print(res)
+    print("*"*20)
+
+    info = []
+    name = res['name']
+    methods = res['methods']
+    for item in methods:
+        location = item['location']
+        exp = item['expiration']
+        exp_time = item['expirationTime']
+        food_set = (location, exp, exp_time)
+        info.append(food_set)
+    tips = res['tips']
 
     # JSONify the response to be used on another page
     # return jsonify(res)
     
     return render_template("add-item.html", 
-                            info = res, 
+                            name = name,
+                            info = info,
+                            tips = tips, 
                             food_id = food_id)
 
 @app.route("/add-item", methods=["POST"])

@@ -60,7 +60,7 @@ class Location(db.Model):
     loc_id = db.Column(db.Integer,
                        autoincrement = True,
                        primary_key = True)
-    loc_name = db.Column(db.String(12))
+    loc_name = db.Column(db.String)
 
     def __repr__(self):
         return f"<Location loc_id = {self.loc_id}, loc_name = {self.loc_name}>"
