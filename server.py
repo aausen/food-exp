@@ -7,6 +7,10 @@ from model import connect_to_db, User, Location, User_food
 import crud
 from jinja2 import StrictUndefined
 import requests
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import secrets.sh
 
 
 app = Flask(__name__)
@@ -31,6 +35,21 @@ def show_homepage():
     """View homepage"""
     if current_user.is_authenticated:
         user_id = current_user.get_id()
+
+        message = Mail(
+            from_email="devtest292@gmail.com",
+            to_emails="devtest292@gmail.com",
+            subject="Sending with Twilio Sendgrid is fun!",
+            html_content="<strong>and easy to do anywhere, even in Python</strong>")
+        try:
+            sg = SendGridAPIClient(secrets.sh.API_KEY)
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e.message)
+
         # Returns a list of user_food objects for the user
         user_food = crud.get_user_food(user_id)
    
@@ -271,6 +290,8 @@ def add_item_to_db():
 
     return redirect('/')
    
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)
