@@ -10,11 +10,13 @@ import requests
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-import secrets.sh
+
 
 
 app = Flask(__name__)
-app.secret_key = "dev"
+os.system("source secrets.sh")
+app.secret_key = "dev" #add to secrets.sh
+API_KEY = os.environ['API_KEY']
 app.jinja_env.undefined = StrictUndefined
 JS_TESTING_MODE = False
 
@@ -39,10 +41,10 @@ def show_homepage():
         message = Mail(
             from_email="devtest292@gmail.com",
             to_emails="devtest292@gmail.com",
-            subject="Sending with Twilio Sendgrid is fun!",
+            subject="New email",
             html_content="<strong>and easy to do anywhere, even in Python</strong>")
         try:
-            sg = SendGridAPIClient(secrets.sh.API_KEY)
+            sg = SendGridAPIClient(API_KEY)
             response = sg.send(message)
             print(response.status_code)
             print(response.body)
