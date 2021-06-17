@@ -12,6 +12,7 @@ MarkupSafe==2.0.1
 psycopg2-binary==2.8.6
 python-http-client==3.3.2
 requests==2.25.1
+schedule @ git+https://github.com/atrnh/schedule.git@9167d9871d316aeb04daf95a65cf9bc9caec4706
 sendgrid==6.7.0
 SQLAlchemy==1.4.17
 starkbank-ecdsa==1.1.1
