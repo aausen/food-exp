@@ -27,7 +27,7 @@ def send_email(user_email, food_name):
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(e.message)
+        print(f"the email didn't send")
 
 def get_user_info():
     """Get the user information to use for the email."""
@@ -60,11 +60,19 @@ def job():
     # Loop through results
     for item in user_food_lst:
         # Get expiration date (datetime object)
-        exp_date = item[0]
+        exp_date_datetime = item[0]
+        exp_date = exp_date_datetime.strftime("%m %d %Y %H")
+        print("*"*20)
+        print(exp_date)
+        print("*"*20)
         # Create new datetime object
-        now = datetime.datetime.now()
+        now_datetime = datetime.datetime.now()
+        now = now_datetime.strftime("%m %d %Y %H")
+        print("!"*20)
+        print(now)
+        print("!"*20)
         # Compare datetime objects, send email if the current date is the expiration date
-        if exp_date >= now:
+        if exp_date == now:
             send_email(item[1], item[2])
 
 # Schedule every hour to check if exp_date has elapsed.
