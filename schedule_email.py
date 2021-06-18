@@ -13,6 +13,8 @@ API_KEY = os.environ['API_KEY']
 send_email = os.environ['send_email']
 
 def send_email(user_email, food_name):
+    """Send email to user that food is expired."""
+
     message = Mail(
         from_email=send_email,
         to_emails=user_email,
@@ -28,6 +30,8 @@ def send_email(user_email, food_name):
         print(e.message)
 
 def get_user_info():
+    """Get the user information to use for the email."""
+
     user_food = User_food.query.all()
     user_food_lst = []
     for item in user_food:
@@ -46,10 +50,9 @@ def get_user_info():
 
 
 def job():
+    """Send the email when the expiration time has elapsed."""
+
     user_food_lst = get_user_info()
-    print("*"*20)
-    print(user_food_lst)
-    print("*"*20)
     for item in user_food_lst:
         exp_date = item[0]
         now = datetime.datetime.now()

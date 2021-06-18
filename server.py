@@ -276,6 +276,11 @@ def add_item_to_db():
     return redirect('/')
    
 
+@app.route("/profile")
+def display_profile():
+    """Display the user profile page"""
+
+    return render_template("profile.html")
 
 
 if __name__ == '__main__':
