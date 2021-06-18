@@ -1,13 +1,14 @@
+from flask import Flask, request, session
 import datetime
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import crud
-from model import User_food
+from model import User_food, connect_to_db
 
 # os.system("source secrets.sh")
-# API_KEY = os.environ['API_KEY']
-# send_email = os.environ['send_email']
+API_KEY = os.environ['API_KEY']
+send_email = os.environ['send_email']
 
 def send_email(user_email, food_name):
     message = Mail(
@@ -24,19 +25,30 @@ def send_email(user_email, food_name):
     except Exception as e:
         print(e.message)
 
-def job():
+def get_user_info():
     user_food = User_food.query.all()
-    exp_date = user_food.end_date
-    user_id = user_food.user_id
-    food_id = user_food.food_id
-    food_name = crud.get_food_by_name(food_id)
-    user_info = crud.get_user_by_id(user_id)
-    user_email = user_info.email
-    print("*"*20)
-    print(user_email)
-    print("*"*20)
+    user_food_lst = []
+    for item in user_food:
+        exp_date = item.end_date
+        user_id = item.user_id
+        food_id = item.food_id
+        food_obj_lst = crud.get_food_by_id(food_id)
+        for food_obj in food_obj_lst:
+            food_name = food_obj.food_name
+        user_info = crud.get_user_by_id(user_id)
+        user_email = user_info.email
+        user_set = (exp_date, user_email, food_name)
+        user_food_lst.append(user_set)
+        print("*"*20)
+        print(user_food_lst)
+        print("*"*20)
+        
     # Get expiration dates from db
     # find user attached to exp_date
     # Get food name
     # If exp_date = date_now:
     #   send email
+
+if __name__ == '__main__':
+    from server import app
+    connect_to_db(app)
