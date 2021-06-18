@@ -60,6 +60,7 @@ def create_user_foods(user_id, food_id):
     db.session.commit()
 
     return user_food
+
 #_________________________User Query________________________#
 def get_user_by_email(email):
 
@@ -95,6 +96,10 @@ def get_user_food(user_id):
     """Returns a list of user_food objects"""
 
     return User_food.query.filter(User_food.user_id == user_id).all()
+
+def get_exp_date():
+
+    return User_food.query.all()
 
 def delete_food_from_db(user_food_id):
     print(user_food_id)

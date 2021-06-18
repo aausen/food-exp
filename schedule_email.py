@@ -23,6 +23,10 @@ def send_email(user_email, food_name):
         print(e.message)
 
 def job():
+    user_food = User_food.query.all()
+    exp_date = user_food.end_date
+    user_id = user_food.user_id
+    food_id = user_food.food_id
     # Get expiration dates from db
     # find user attached to exp_date
     # Get food name
