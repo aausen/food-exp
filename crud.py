@@ -97,9 +97,6 @@ def get_user_food(user_id):
 
     return User_food.query.filter(User_food.user_id == user_id).all()
 
-def get_exp_date():
-
-    return User_food.query.all()
 
 def delete_food_from_db(user_food_id):
     print(user_food_id)
