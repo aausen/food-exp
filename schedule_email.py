@@ -39,8 +39,16 @@ def get_user_info():
         user_email = user_info.email
         user_set = (exp_date, user_email, food_name)
         user_food_lst.append(user_set)
+
+    return user_food_lst
+
+
+def job():
+
+    for item in user_food_lst:
+        exp_date = item[0]
         print("*"*20)
-        print(user_food_lst)
+        print(exp_date)
         print("*"*20)
         
     # Get expiration dates from db
