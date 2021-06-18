@@ -60,7 +60,7 @@ def create_user_foods(user_id, food_id):
     db.session.commit()
 
     return user_food
-
+#_________________________User Query________________________#
 def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
@@ -69,27 +69,32 @@ def get_user_password(password):
 
     return User.query.filter(User.password == password).first()
 
+#_________________________Location Query______________________#
+
 def get_loc_by_name(food_loc):
 
     return Location.query.filter(Location.loc_name == food_loc).first()
 
+def get_loc_by_loc_id(loc_id):
+
+    return Location.query.filter(Location.loc_id == loc_id).first()
+
+#__________________________Food Query ________________________#
 def get_food_by_name(food_name):
 
     return Food.query.filter(Food.food_name == food_name).first()
-
-def get_user_food(user_id):
-    """Returns a list of user_food objects"""
-
-    return User_food.query.filter(User_food.user_id == user_id).all()
 
 def get_food_by_id(food_id):
     """Return food information by food_id"""
 
     return Food.query.filter(Food.food_id == food_id).all()
 
-def get_loc_by_loc_id(loc_id):
+#_______________________User_food Query______________________#
 
-    return Location.query.filter(Location.loc_id == loc_id).first()
+def get_user_food(user_id):
+    """Returns a list of user_food objects"""
+
+    return User_food.query.filter(User_food.user_id == user_id).all()
 
 def delete_food_from_db(user_food_id):
     print(user_food_id)
@@ -97,7 +102,6 @@ def delete_food_from_db(user_food_id):
     db.session.delete(del_food)
     db.session.commit()
     
-
 
 if __name__ == '__main__':
     from server import app
