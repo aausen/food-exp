@@ -70,6 +70,10 @@ def get_user_password(password):
 
     return User.query.filter(User.password == password).first()
 
+def get_user_by_id(user_id):
+
+    return User.query.filter(User.user_id == user_id).first()
+
 #_________________________Location Query______________________#
 
 def get_loc_by_name(food_loc):

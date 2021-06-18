@@ -2,10 +2,12 @@ import datetime
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import crud
+from model import User_food
 
-os.system("source secrets.sh")
-API_KEY = os.environ['API_KEY']
-send_email = os.environ['send_email']
+# os.system("source secrets.sh")
+# API_KEY = os.environ['API_KEY']
+# send_email = os.environ['send_email']
 
 def send_email(user_email, food_name):
     message = Mail(
@@ -27,6 +29,12 @@ def job():
     exp_date = user_food.end_date
     user_id = user_food.user_id
     food_id = user_food.food_id
+    food_name = crud.get_food_by_name(food_id)
+    user_info = crud.get_user_by_id(user_id)
+    user_email = user_info.email
+    print("*"*20)
+    print(user_email)
+    print("*"*20)
     # Get expiration dates from db
     # find user attached to exp_date
     # Get food name
