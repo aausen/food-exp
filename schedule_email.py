@@ -32,8 +32,11 @@ def send_email(user_email, food_name):
 def get_user_info():
     """Get the user information to use for the email."""
 
+    # Get information from the db
     user_food = User_food.query.all()
+    # Create a list to store the user sets
     user_food_lst = []
+    # Loop through the results to get the exp
     for item in user_food:
         exp_date = item.end_date
         user_id = item.user_id
@@ -52,13 +55,19 @@ def get_user_info():
 def job():
     """Send the email when the expiration time has elapsed."""
 
+    # Get user information from get_user_info function.
     user_food_lst = get_user_info()
+    # Loop through results
     for item in user_food_lst:
+        # Get expiration date (datetime object)
         exp_date = item[0]
+        # Create new datetime object
         now = datetime.datetime.now()
-        if exp_date == now:
+        # Compare datetime objects, send email if the current date is the expiration date
+        if exp_date >= now:
             send_email(item[1], item[2])
 
+# Schedule every hour to check if exp_date has elapsed.
 schedule.every().hour.do(job)
         
     # Get expiration dates from db
