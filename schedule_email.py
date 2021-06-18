@@ -5,6 +5,8 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import crud
 from model import User_food, connect_to_db
+import schedule
+import time
 
 # os.system("source secrets.sh")
 API_KEY = os.environ['API_KEY']
@@ -14,8 +16,8 @@ def send_email(user_email, food_name):
     message = Mail(
         from_email=send_email,
         to_emails=user_email,
-        subject="Time to toss the {food_name}",
-        html_content="<strong>and easy to do anywhere, even in Python</strong>")
+        subject=f"Time to toss the {food_name}",
+        html_content=f"Your {food_name} has gone bad. It is time to toss that food!")
     try:
         sg = SendGridAPIClient(API_KEY)
         response = sg.send(message)
@@ -44,12 +46,17 @@ def get_user_info():
 
 
 def job():
-
+    user_food_lst = get_user_info()
+    print("*"*20)
+    print(user_food_lst)
+    print("*"*20)
     for item in user_food_lst:
         exp_date = item[0]
-        print("*"*20)
-        print(exp_date)
-        print("*"*20)
+        now = datetime.datetime.now()
+        if exp_date == now:
+            send_email(item[1], item[2])
+
+schedule.every().hour.do(job)
         
     # Get expiration dates from db
     # find user attached to exp_date
@@ -60,3 +67,4 @@ def job():
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+    schedule.run_continuously()
