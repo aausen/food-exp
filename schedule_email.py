@@ -1,3 +1,5 @@
+"""Schedule and send user emails."""
+
 from flask import Flask, request, session
 import datetime
 import os
@@ -10,13 +12,13 @@ import time
 
 # os.system("source secrets.sh")
 API_KEY = os.environ['API_KEY']
-send_email = os.environ['send_email']
+sent_email = os.environ['sent_email']
 
 def send_email(user_email, food_name):
     """Send email to user that food is expired."""
 
     message = Mail(
-        from_email=send_email,
+        from_email=sent_email,
         to_emails=user_email,
         subject=f"Time to toss the {food_name}",
         html_content=f"Your {food_name} has gone bad. It is time to toss that food!")
@@ -61,22 +63,24 @@ def job():
     for item in user_food_lst:
         # Get expiration date (datetime object)
         exp_date_datetime = item[0]
-        exp_date = exp_date_datetime.strftime("%m %d %Y %H")
+        exp_date = exp_date_datetime.strftime("%m %d %Y %H %M")
         print("*"*20)
-        print(exp_date)
+        print(item[2], exp_date)
         print("*"*20)
         # Create new datetime object
         now_datetime = datetime.datetime.now()
-        now = now_datetime.strftime("%m %d %Y %H")
+        now = now_datetime.strftime("%m %d %Y %H %M")
         print("!"*20)
-        print(now)
+        print(item[2], now)
         print("!"*20)
         # Compare datetime objects, send email if the current date is the expiration date
         if exp_date == now:
             send_email(item[1], item[2])
+# def job():
+#     print("I'm working")
 
 # Schedule every hour to check if exp_date has elapsed.
-schedule.every().hour.do(job)
+schedule.every().minutes.do(job)
         
     # Get expiration dates from db
     # find user attached to exp_date
