@@ -187,25 +187,18 @@ def add_item():
     """Gets and displays food information on add food page"""
 
     food_id = request.args.get("select-food")
-
     # Get the input from the user
     payload = food_id
-
     # Define the url
     url = "https://shelf-life-api.herokuapp.com/guides/"
-
     # Make the first request to the api to get the url
     res = requests.get(url, payload)
-  
     # Split the url on the ? so the request can be sent properly
     lst = res.url.split("?")
-    
     # Create the new url
     new_url = lst[0] + lst[1]
-
     # Send a get request for the food info
     res = requests.get(new_url)
-
     # Create a json object
     res = res.json()
     print("*"*20)
@@ -223,8 +216,6 @@ def add_item():
         info.append(food_set)
     tips = res['tips']
 
-    # JSONify the response to be used on another page
-    # return jsonify(res)
     
     return render_template("add-item.html", 
                             name = name,
@@ -279,8 +270,12 @@ def add_item_to_db():
 @app.route("/profile")
 def display_profile():
     """Display the user profile page"""
+    user_id = current_user.get_id()
+    user = crud.get_user_by_id(user_id)
+    email = user.email
 
-    return render_template("profile.html")
+    return render_template("profile.html",
+                            email = email)
 
 
 if __name__ == '__main__':
