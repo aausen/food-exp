@@ -4,6 +4,8 @@ import server
 import unittest
 from flask_login import current_user
 import crud
+import model
+from test_data import example_data
 
 class MyAppIntegrationTestCase(unittest.TestCase):
     """Integration tests: testing Flask server."""
@@ -12,6 +14,22 @@ class MyAppIntegrationTestCase(unittest.TestCase):
         print("(setUp ran)")
         self.client = server.app.test_client()
         server.app.config['TESTING'] = True
+        server.app.config['SECRET_KEY'] = 'key'
+
+        with self.client as c:
+            with c.session_transaction() as sess:
+                sess['user_id'] = 1
+                
+
+        model.connect_to_db(server.app, "postgresql:///test_fooddb")
+
+        model.User.query.delete()
+        model.Food.query.delete()
+        model.Location.query.delete()
+        model.User_food.query.delete()
+
+        model.db.create_all()
+        example_data()
 
     def tearDown(self):
         print("(tearDown ran)")
@@ -19,7 +37,6 @@ class MyAppIntegrationTestCase(unittest.TestCase):
 
     # def test_homepage(self):
     #     result = self.client.get('/')
-    #     current_user.is_authenticated = True
     #     self.assertIn(b'<h2>Food list here</h2>', result.data)
 
     ## Throwing an error because I'm not sure how fake that a user is logged in
@@ -27,10 +44,16 @@ class MyAppIntegrationTestCase(unittest.TestCase):
     def test_login_get(self):
         result = self.client.get('/login')
         self.assertIn(b'<h2>Log In</h2>', result.data)
+        print("*"*30)
+        print("test_login", result.data)
+        print("*"*30)
 
     def test_register(self):
         result = self.client.get('/register')
         self.assertIn(b'<h2>Create an account</h2>', result.data)
+        print("*"*30)
+        print("test_register", result.data)
+        print("*"*30)
 
     # def test_register_form(self):
     #     result = self.client.get('register', data={'email' : 'test@test.test', 'password' : 'test', 'pref_contact' : 'email'})
@@ -46,9 +69,12 @@ class MyAppIntegrationTestCase(unittest.TestCase):
     ## Test_search and test_add_item are throwing errors because of the new_url. It says 
     ## the list index is out of range since it's not actually doing a get request
 
-    # def test_profile(self):
-    #     result = self.client.get('/profile')
-    #     self.assertIn(b'<h2>This is your profile</h2>', result.data)
+    def test_profile(self):
+        result = self.client.get('/profile', data={email: "test@test.test"})
+        self.assertIn(b'<h2>This is your profile</h2>', result.data)
+        print("*"*30)
+        print("test_profile", result.data)
+        print("*"*30)
 
 if __name__ == '__main__':
     unittest.main()
