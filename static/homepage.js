@@ -25,3 +25,26 @@ for (let dateExp of expDateArray) {
 }
 
 
+function showAll() {
+    let x = document.getElementById("myDiv");
+    if (x.style.display === "none"){
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function showFridge() {
+    let tdata = document.querySelectorAll('td');
+    let x = 1
+    const locArray = [];
+    while (x < tdata.length){
+        let loc = tdata[x].innerHTML;
+        locArray.push(loc);
+        x = x + 4;
+        console.log(locArray);
+    }
+    
+    
+}
+
