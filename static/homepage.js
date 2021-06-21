@@ -44,16 +44,21 @@ function showFridge() {
         locObjs.push(tdata[x]);
         locArray.push(loc);
         x = x + 4;
-        console.log(locArray);
+        // console.log(locArray);
     };
 
     let count = 0;
+    let tr = document.querySelectorAll('tr')
+    console.log(tr);
     for (let loc of locArray){
+        console.log(loc);
         if(loc !== "Refrigerator"){ 
-            locObjs[count].style.display = "none";
+            if($('tr:has(loc)')){
+                tr.style.display = "none";
+            }
         }
        
-        counter ++
+        counter ++;
     }
     
     
