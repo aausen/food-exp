@@ -28,9 +28,9 @@
 
 <p>
     {% for item in info %}
-    Location: {{ info[0][0] }}
+    Location: {{ item[0] }}
     <br>
-    Expiration: {{ info[0][1] }}
+    Expiration: {{ item[1] }}
     <br>
     {% endfor %}
     
