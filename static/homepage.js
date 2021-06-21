@@ -43,6 +43,12 @@ function showFridge() {
         locArray.push(loc);
         x = x + 4;
         console.log(locArray);
+    };
+
+    let count = 0;
+    for (let loc of locArray){
+        if(loc === "Refrigerator")
+        
     }
     
     
