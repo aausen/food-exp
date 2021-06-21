@@ -38,8 +38,10 @@ function showFridge() {
     let tdata = document.querySelectorAll('td');
     let x = 1
     const locArray = [];
+    const locObjs = [];
     while (x < tdata.length){
         let loc = tdata[x].innerHTML;
+        locObjs.push(tdata[x]);
         locArray.push(loc);
         x = x + 4;
         console.log(locArray);
@@ -47,8 +49,11 @@ function showFridge() {
 
     let count = 0;
     for (let loc of locArray){
-        if(loc === "Refrigerator")
-        
+        if(loc !== "Refrigerator"){ 
+            locObjs[count].style.display = "none";
+        }
+       
+        counter ++
     }
     
     
