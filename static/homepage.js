@@ -38,16 +38,11 @@ function showFridge() {
     let tdata = document.querySelectorAll('td');
     let x = 1
     const locArray = [];
-    const locObjs = [];
     while (x < tdata.length){
         let loc = tdata[x].innerHTML;
-        locObjs.push(tdata[x]);
         locArray.push(loc);
         x = x + 4;
-        // console.log(locArray);
-        
     };
-    
 
     let count = 1;
     let tr = document.querySelectorAll('tr')
@@ -55,21 +50,70 @@ function showFridge() {
     for(let locc of locArray){
         console.log("**")
         console.log(tr[count]);
-        if(locc == " Refrigerator"){ 
-            tr[count].style.display = "none";
+        if(locc !== " Refrigerator"){ 
+            let y = tr[count]
+            if(y.style.visibility === 'collapse'){
+                y.style.visibility = 'visible';
+            } else{
+                y.style.visibility = 'collapse';
+            }
         }
-        // console.log(locc);
-        // if(locc == "Pantry"){ 
-        //     console.log(locc);
-        //     // if($('tr:has(loc)')){
-        //     //     tr.style.display = "none";
-        //     console.log(loc);
-        //     }
-        // }
-       
         count ++;
     }
-    
-    
-}
+};
 
+function showFreezer() {
+    let tdata = document.querySelectorAll('td');
+    let x = 1
+    const locArray = [];
+    while (x < tdata.length){
+        let loc = tdata[x].innerHTML;
+        locArray.push(loc);
+        x = x + 4;
+    };
+
+    let count = 1;
+    let tr = document.querySelectorAll('tr')
+    console.log(tr);
+    for(let locc of locArray){
+        console.log("**")
+        console.log(tr[count]);
+        if(locc !== " Freezer"){ 
+            let y = tr[count]
+            if(y.style.visibility === 'collapse'){
+                y.style.visibility = 'visible';
+            } else{
+                y.style.visibility = 'collapse';
+            }
+        }
+        count ++;
+    }
+};
+
+function showPantry() {
+    let tdata = document.querySelectorAll('td');
+    let x = 1
+    const locArray = [];
+    while (x < tdata.length){
+        let loc = tdata[x].innerHTML;
+        locArray.push(loc);
+        x = x + 4;
+    };
+
+    let count = 1;
+    let tr = document.querySelectorAll('tr')
+    console.log(tr);
+    for(let locc of locArray){
+        console.log("**")
+        console.log(tr[count]);
+        if(locc !== " Pantry"){ 
+            let y = tr[count]
+            if(y.style.visibility === 'collapse'){
+                y.style.visibility = 'visible';
+            } else{
+                y.style.visibility = 'collapse';
+            }
+        }
+        count ++;
+    }
+};
