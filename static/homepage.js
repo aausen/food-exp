@@ -45,20 +45,29 @@ function showFridge() {
         locArray.push(loc);
         x = x + 4;
         // console.log(locArray);
+        
     };
+    
 
-    let count = 0;
+    let count = 1;
     let tr = document.querySelectorAll('tr')
     console.log(tr);
-    for (let loc of locArray){
-        console.log(loc);
-        if(loc !== "Refrigerator"){ 
-            if($('tr:has(loc)')){
-                tr.style.display = "none";
-            }
+    for(let locc of locArray){
+        console.log("**")
+        console.log(tr[count]);
+        if(locc == " Refrigerator"){ 
+            tr[count].style.display = "none";
         }
+        // console.log(locc);
+        // if(locc == "Pantry"){ 
+        //     console.log(locc);
+        //     // if($('tr:has(loc)')){
+        //     //     tr.style.display = "none";
+        //     console.log(loc);
+        //     }
+        // }
        
-        counter ++;
+        count ++;
     }
     
     
