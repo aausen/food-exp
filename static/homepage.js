@@ -119,7 +119,7 @@ function showPantry() {
 };
 
 function filterByLocation(){
-    let buttons = Array.from(document.querySelectorAll('input.btn-check'));
+    const buttons = Array.from(document.querySelectorAll('input.btn-check'));
     let selectedButtons = buttons.filter(button => button.checked);
     // let activeLocations = selectedButtons.map()
 
