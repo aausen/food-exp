@@ -152,22 +152,24 @@ def food_search():
     input_food = request.args.get("searchBar") 
 
     # Get the input from the user
-    payload = input_food
+    # payload = input_food
 
     # Define the search url
-    url = "https://shelf-life-api.herokuapp.com/search?q="
+    url = "https://shelf-life-api.herokuapp.com/search"
+    payload = {'q': input_food }
+  
 
     # Get request to API
-    res = requests.get(url, payload)
+    res = requests.get(url, params=payload)
 
     # Defining a variable so we can take out the &
-    lst = res.url.split('&')
+    # lst = res.url.split('&')
 
-    # Putting our pieces back together 
-    new_url = lst[0] + lst[1]
+    # # Putting our pieces back together 
+    # new_url = lst[0] + lst[1]
 
-    # New get request using the new_url
-    res = requests.get(new_url)
+    # # New get request using the new_url
+    # res = requests.get(new_url)
 
     # JSONify the result to be used in next step
     res = res.json()
@@ -190,16 +192,16 @@ def add_item():
     # Get the input from the user
     payload = food_id
     # Define the url
-    url = "https://shelf-life-api.herokuapp.com/guides/"
+    url = "https://shelf-life-api.herokuapp.com/guides/" + food_id
     # Make the first request to the api to get the url
-    res = requests.get(url, payload)
+    res = requests.get(url)
     # Split the url on the ? so the request can be sent properly
-    lst = res.url.split("?")
-    # Create the new url
-    new_url = lst[0] + lst[1]
-    # Send a get request for the food info
-    res = requests.get(new_url)
-    # Create a json object
+    # lst = res.url.split("?")
+    # # Create the new url
+    # new_url = lst[0] + lst[1]
+    # # Send a get request for the food info
+    # res = requests.get(new_url)
+    # # Create a json object
     res = res.json()
 
     info = []

@@ -50,7 +50,7 @@ function showFridge() {
     for(let locc of locArray){
         console.log("**")
         console.log(tr[count]);
-        if(locc !== " Refrigerator"){ 
+        if(locc !== " Refrigerator"){ // check whether locc is inside one of the selected locations
             let y = tr[count]
             if(y.style.visibility === 'collapse'){
                 y.style.visibility = 'visible';
@@ -117,3 +117,33 @@ function showPantry() {
         count ++;
     }
 };
+
+function filterByLocation(){
+    let buttons = Array.from(document.querySelectorAll('input.btn-check'));
+    let selectedButtons = buttons.filter(button => button.checked);
+    // let activeLocations = selectedButtons.map()
+
+    let rows = document.querySelectorAll('tr')
+    rows.foreach()
+}
+
+
+// // Every time you click a button
+// function filterByLocation(){
+//     buttons = document.querySelectorAll()
+//     selectedButtons = buttons.filter(function (button){
+//       button.checked
+//     })
+//     activeLocations = selectedButtons.map(function (button){
+//       button.datasets['locations']
+//     })
+  
+//     rows = document.querySelectorAll('tr')
+//     for loop -> rows.each(function (button){
+//       if row.location is in any activeLocations
+//         row.show
+//       else
+//         row.hide
+//       end
+//     })
+//   }
