@@ -121,10 +121,11 @@ function showPantry() {
 function filterByLocation(){
     const buttons = Array.from(document.querySelectorAll('input.btn-check'));
     let selectedButtons = buttons.filter(button => button.checked);
-    // let activeLocations = selectedButtons.map()
+    let activeLocations = selectedButtons.map(button => 
+        button.datasets['location']);
 
-    let rows = document.querySelectorAll('tr')
-    rows.foreach()
+    const rows = Array.from(document.querySelectorAll('tr'));
+    let loc = rows.map(row => row.datasets['loc']);
 }
 
 
@@ -138,7 +139,7 @@ function filterByLocation(){
 //       button.datasets['locations']
 //     })
   
-//     rows = document.querySelectorAll('tr')
+//     const rows = Array.from(document.querySelectorAll('tr'));
 //     for loop -> rows.each(function (button){
 //       if row.location is in any activeLocations
 //         row.show
@@ -147,3 +148,4 @@ function filterByLocation(){
 //       end
 //     })
 //   }
+
