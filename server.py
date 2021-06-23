@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, g
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from jinja2.runtime import StrictUndefined
-from model import connect_to_db, User, Location, User_food
+from model import connect_to_db, User, Location, User_food, Food
 import crud
 from jinja2 import StrictUndefined
 import requests
@@ -201,9 +201,6 @@ def add_item():
     res = requests.get(new_url)
     # Create a json object
     res = res.json()
-    print("*"*20)
-    print(res)
-    print("*"*20)
 
     info = []
     name = res['name']
@@ -254,7 +251,11 @@ def add_item_to_db():
 
     # Check if food exists
     new_food = crud.get_food_by_name(str_food)
+    # If no food exists, create a new food
     if new_food == None:
+        new_food = crud.create_food(str_food, exp_time, loc_id)
+    # Else if the name exists, but the location is different, create new food
+    elif str_food == new_food.food_name and new_food.loc_id != loc.loc_id:
         new_food = crud.create_food(str_food, exp_time, loc_id)
     # Get user_id
     user_id = current_user.get_id()
