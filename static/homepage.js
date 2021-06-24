@@ -25,106 +25,126 @@ for (let dateExp of expDateArray) {
 }
 
 
-function showAll() {
-    let x = document.getElementById("myDiv");
-    if (x.style.display === "none"){
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
+// function showAll() {
+//     let x = document.getElementById("myDiv");
+//     if (x.style.display === "none"){
+//         x.style.display = "block";
+//     } else {
+//         x.style.display = "none";
+//     }
+// }
 
-function showFridge() {
-    let tdata = document.querySelectorAll('td');
-    let x = 1
-    const locArray = [];
-    while (x < tdata.length){
-        let loc = tdata[x].innerHTML;
-        locArray.push(loc);
-        x = x + 4;
-    };
+// function showFridge() {
+//     let tdata = document.querySelectorAll('td');
+//     let x = 1
+//     const locArray = [];
+//     while (x < tdata.length){
+//         let loc = tdata[x].innerHTML;
+//         locArray.push(loc);
+//         x = x + 4;
+//     };
 
-    let count = 1;
-    let tr = document.querySelectorAll('tr')
-    console.log(tr);
-    for(let locc of locArray){
-        // console.log("**")
-        // console.log(tr[count]);
-        if(locc !== " Refrigerator"){ // check whether locc is inside one of the selected locations
-            let y = tr[count]
-            if(y.style.visibility === 'collapse'){
-                y.style.visibility = 'visible';
-            } else{
-                y.style.visibility = 'collapse';
-            }
-        }
-        count ++;
-    }
-};
+//     let count = 1;
+//     let tr = document.querySelectorAll('tr')
+//     // console.log(tr);
+//     for(let locc of locArray){
+//         // console.log("**")
+//         // console.log(tr[count]);
+//         if(locc !== " Refrigerator"){ // check whether locc is inside one of the selected locations
+//             let y = tr[count]
+//             if(y.style.visibility === 'collapse'){
+//                 y.style.visibility = 'visible';
+//             } else{
+//                 y.style.visibility = 'collapse';
+//             }
+//         }
+//         count ++;
+//     }
+// };
 
-function showFreezer() {
-    let tdata = document.querySelectorAll('td');
-    let x = 1
-    const locArray = [];
-    while (x < tdata.length){
-        let loc = tdata[x].innerHTML;
-        locArray.push(loc);
-        x = x + 4;
-    };
+// function showFreezer() {
+//     let tdata = document.querySelectorAll('td');
+//     let x = 1
+//     const locArray = [];
+//     while (x < tdata.length){
+//         let loc = tdata[x].innerHTML;
+//         locArray.push(loc);
+//         x = x + 4;
+//     };
 
-    let count = 1;
-    let tr = document.querySelectorAll('tr')
-    console.log(tr);
-    for(let locc of locArray){
-        // console.log("**")
-        // console.log(tr[count]);
-        if(locc !== " Freezer"){ 
-            let y = tr[count]
-            if(y.style.visibility === 'collapse'){
-                y.style.visibility = 'visible';
-            } else{
-                y.style.visibility = 'collapse';
-            }
-        }
-        count ++;
-    }
-};
+//     let count = 1;
+//     let tr = document.querySelectorAll('tr')
+//     // console.log(tr);
+//     for(let locc of locArray){
+//         // console.log("**")
+//         // console.log(tr[count]);
+//         if(locc !== " Freezer"){ 
+//             let y = tr[count]
+//             if(y.style.visibility === 'collapse'){
+//                 y.style.visibility = 'visible';
+//             } else{
+//                 y.style.visibility = 'collapse';
+//             }
+//         }
+//         count ++;
+//     }
+// };
 
-function showPantry() {
-    let tdata = document.querySelectorAll('td');
-    let x = 1
-    const locArray = [];
-    while (x < tdata.length){
-        let loc = tdata[x].innerHTML;
-        locArray.push(loc);
-        x = x + 4;
-    };
+// function showPantry() {
+//     let tdata = document.querySelectorAll('td');
+//     let x = 1
+//     const locArray = [];
+//     while (x < tdata.length){
+//         let loc = tdata[x].innerHTML;
+//         locArray.push(loc);
+//         x = x + 4;
+//     };
 
-    let count = 1;
-    let tr = document.querySelectorAll('tr')
-    console.log(tr);
-    for(let locc of locArray){
-        // console.log("**")
-        // console.log(tr[count]);
-        if(locc !== " Pantry"){ 
-            let y = tr[count]
-            if(y.style.visibility === 'collapse'){
-                y.style.visibility = 'visible';
-            } else{
-                y.style.visibility = 'collapse';
-            }
-        }
-        count ++;
-    }
-};
+//     let count = 1;
+//     let tr = document.querySelectorAll('tr')
+//     // console.log(tr);
+//     for(let locc of locArray){
+//         // console.log("**")
+//         // console.log(tr[count]);
+//         if(locc !== " Pantry"){ 
+//             let y = tr[count]
+//             if(y.style.visibility === 'collapse'){
+//                 y.style.visibility = 'visible';
+//             } else{
+//                 y.style.visibility = 'collapse';
+//             }
+//         }
+//         count ++;
+//     }
+// };
 
 function filterByLocation(){
     const buttons = Array.from(document.querySelectorAll('input.btn-check'));
     let selectedButtons = buttons.filter(button => button.checked);
     let activeLocations = selectedButtons.map(button => {return button.getAttribute('data-location')})
    
-    const rows = Array.from(document.querySelectorAll('tr'));
-    let loc = rows.map(row => row.datasets['loc']);
+    const rows = document.querySelectorAll('td');
+    let x = 1;
+    const locArray = [];
+    while (x < rows.length){
+        let loc = rows[x].innerHTML;
+        locArray.push(loc);
+        x = x + 4;
+    }
+    
+    let count = 1;
+    let tr = document.querySelectorAll('tr')
+    for(let loc in locArray){
+        let y = tr[count];
+        if(activeLocations.includes(loc)){
+            y.style.visibility === 'visible';
+        }
+        else{
+            y.style.visibility === 'collapse';
+        }
+    }
+    count ++
+    
 }
 
 
