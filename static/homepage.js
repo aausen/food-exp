@@ -121,14 +121,8 @@ function showPantry() {
 function filterByLocation(){
     const buttons = Array.from(document.querySelectorAll('input.btn-check'));
     let selectedButtons = buttons.filter(button => button.checked);
-    let activeLocations = selectedButtons.map(function(button) => {
-        button.datasets['location'];)
-    }
-
-    // for(let buttons of selectedButtons){
-    //     let activeLocations = button.datasets.location;
-    // }
-
+    let activeLocations = selectedButtons.map(button => {return button.getAttribute('data-location')})
+   
     const rows = Array.from(document.querySelectorAll('tr'));
     let loc = rows.map(row => row.datasets['loc']);
 }
