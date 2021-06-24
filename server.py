@@ -94,8 +94,6 @@ def register_process():
     user_name = request.form.get("user_name")
     email = request.form.get("email")
     password = request.form.get("password")
-    phone = request.form.get("phone")
-    pref_contact = request.form.get("pref-contact")
     user = crud.get_user_by_email(email)
 
     if user:
@@ -103,7 +101,7 @@ def register_process():
 
         return redirect('/register')
     else:
-        crud.create_user(user_name, email, password, pref_contact, phone=None)
+        crud.create_user(user_name, email, password)
         flash("Account created! Please log in.")
 
         return redirect('/login')

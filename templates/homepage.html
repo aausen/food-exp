@@ -23,6 +23,9 @@
 {% endblock%}
 
 {% block body %}
+{% if current_user.is_authenticated %}
+Welcome {{ current_user.user_name }}
+{% endif %}
 <h1>This is all the food you have!</h1>
 
 <h2>Navigation</h2>

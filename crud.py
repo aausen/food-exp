@@ -3,13 +3,12 @@
 from model import db, User, Food, Location, User_food, connect_to_db
 from datetime import datetime, timedelta
 
-def create_user(email, password, pref_contact, phone = None):
+def create_user(user_name, email, password):
     """Create and return a new user"""
 
-    user = User(email = email, 
-                password = password, 
-                phone = phone, 
-                pref_contact = pref_contact)
+    user = User(user_name = user_name,
+                email = email, 
+                password = password)
 
     db.session.add(user)
     db.session.commit()

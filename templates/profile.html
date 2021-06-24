@@ -12,9 +12,11 @@
 </ul>
 
 <h2>This is your profile</h2>
-<p>Hello, {{ email }}</p>
+{% if current_user.is_authenticated %}
+<p>Hello, {{ current_user.user_name }}</p>
+{% endif %}
 <p>Change your password</p>
-<p>Change your prefered contact</p>
+<p>Change your image</p>
 
 
 {% endblock %}
