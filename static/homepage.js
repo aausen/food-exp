@@ -48,8 +48,8 @@ function showFridge() {
     let tr = document.querySelectorAll('tr')
     console.log(tr);
     for(let locc of locArray){
-        console.log("**")
-        console.log(tr[count]);
+        // console.log("**")
+        // console.log(tr[count]);
         if(locc !== " Refrigerator"){ // check whether locc is inside one of the selected locations
             let y = tr[count]
             if(y.style.visibility === 'collapse'){
@@ -76,8 +76,8 @@ function showFreezer() {
     let tr = document.querySelectorAll('tr')
     console.log(tr);
     for(let locc of locArray){
-        console.log("**")
-        console.log(tr[count]);
+        // console.log("**")
+        // console.log(tr[count]);
         if(locc !== " Freezer"){ 
             let y = tr[count]
             if(y.style.visibility === 'collapse'){
@@ -104,8 +104,8 @@ function showPantry() {
     let tr = document.querySelectorAll('tr')
     console.log(tr);
     for(let locc of locArray){
-        console.log("**")
-        console.log(tr[count]);
+        // console.log("**")
+        // console.log(tr[count]);
         if(locc !== " Pantry"){ 
             let y = tr[count]
             if(y.style.visibility === 'collapse'){
@@ -121,8 +121,13 @@ function showPantry() {
 function filterByLocation(){
     const buttons = Array.from(document.querySelectorAll('input.btn-check'));
     let selectedButtons = buttons.filter(button => button.checked);
-    let activeLocations = selectedButtons.map(button => 
-        button.datasets['location']);
+    let activeLocations = selectedButtons.map(function(button) => {
+        button.datasets['location'];)
+    }
+
+    // for(let buttons of selectedButtons){
+    //     let activeLocations = button.datasets.location;
+    // }
 
     const rows = Array.from(document.querySelectorAll('tr'));
     let loc = rows.map(row => row.datasets['loc']);
