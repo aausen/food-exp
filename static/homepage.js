@@ -131,21 +131,22 @@ function filterByLocation(){
         locArray.push(loc);
         x = x + 4;
     }
-    
+    console.log(locArray)
     let count = 1;
     let tr = document.querySelectorAll('tr')
-    for(let loc in locArray){
+    for(let loc of locArray){
         let y = tr[count];
         if(activeLocations.includes(loc)){
-            y.style.visibility === 'visible';
-        }
-        else{
-            y.style.visibility === 'collapse';
+            console.log("Visible", loc)
+            y.style.visibility = 'visible';
+        }else{
+            console.log("not visible", loc)
+            y.style.visibility = 'collapse';
         }
     }
-    count ++
+    count ++;
     
-}
+};
 
 
 // // Every time you click a button

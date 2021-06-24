@@ -17,6 +17,8 @@ class User(db.Model, UserMixin):
                       unique = True)
     password = db.Column(db.String(15),
                          nullable = False)
+    user_name = db.Column(db.String(20),
+                          nullable = False)
     phone = db.Column(db.Integer(),
                       nullable = True)
     pref_contact = db.Column(db.String(5))
