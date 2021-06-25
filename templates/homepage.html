@@ -46,13 +46,13 @@ Welcome {{ current_user.user_name }}
 <!-- <button onclick="showFridge()">Refrigerator</button>
 <button onclick="showPantry()">Pantry</button> -->
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-    <input type="checkbox" onclick="filterByLocation()" class="btn-check" id="btncheck1" autocomplete="off" data-location=" Refrigerator">
+    <input type="checkbox" class="location-filter btn-check" id="btncheck1" autocomplete="off" data-location=" Refrigerator">
     <label class="btn btn-outline-primary" for="btncheck1">Refrigerator</label>
   
-    <input type="checkbox" onclick="filterByLocation()" class="btn-check" id="btncheck2" autocomplete="off" data-location=" Freezer">
+    <input type="checkbox" class="location-filter btn-check" id="btncheck2" autocomplete="off" data-location=" Freezer">
     <label class="btn btn-outline-primary" for="btncheck2">Freezer</label>
   
-    <input type="checkbox" onclick="filterByLocation()" class="btn-check" id="btncheck3" autocomplete="off" data-location=" Pantry">
+    <input type="checkbox" class="location-filter btn-check" id="btncheck3" autocomplete="off" data-location=" Pantry">
     <label class="btn btn-outline-primary" for="btncheck3">Pantry</label>
   </div>
 
@@ -69,7 +69,7 @@ Welcome {{ current_user.user_name }}
             <th>Delete</th>
         </tr>
         {% for food_id, name, loc, exp, user_food_id in food_by_user %}
-        <tr>
+        <tr class="food-entry">
         
         <td>{{ name }}</td>
         <td data-loc="{{ loc }}">{{ loc }}</td>

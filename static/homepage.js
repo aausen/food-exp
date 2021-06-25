@@ -24,6 +24,42 @@ for (let dateExp of expDateArray) {
         counter ++;
 }
 
+// on change handler for .location-filter els
+// each .loc-filter has data-location="name of location"
+// func that takes in location name and boolean (hide/unhide)
+// showRowsByLocation(' Fridge', true) => show all ' Fridge' rows
+//                               false => hide
+//
+
+// Syntax for adding Bootstrap class to set display: none;
+// element.classList.add('d-none');
+// To remove class
+// element.classList.remove('d-none');
+
+function showRowsByLocation(loc, shouldHidden) {
+    const trs = document.querySelectorAll('.food-entry');
+
+    const locRows = [];
+    for (const tr of trs) {
+        if (getFoodRowLocation(tr).trim() === loc.trim()) {
+            locRows.push(tr);
+        }
+    }
+
+    
+    for (const location of locRows) {
+        if (shouldHidden) {
+            location.classList.add('d-none');
+        } else {
+            location.classList.remove('d-none');
+        }
+    }
+}
+
+function getFoodRowLocation(trEl) {
+    const td = trEl.querySelector('td[data-loc]');
+    return td.dataset.loc;
+}
 
 // function showAll() {
 //     let x = document.getElementById("myDiv");
@@ -119,31 +155,47 @@ for (let dateExp of expDateArray) {
 // };
 
 function filterByLocation(){
+    // Get all the buttons from the html
     const buttons = Array.from(document.querySelectorAll('input.btn-check'));
+    // Get list of which buttons are currently checked
     let selectedButtons = buttons.filter(button => button.checked);
+    // Create a list of the string locations that are checked
     let activeLocations = selectedButtons.map(button => {return button.getAttribute('data-location')})
    
+    // Get each row from food table
     const rows = document.querySelectorAll('td');
+    // Set counting var for traversing the table
     let x = 1;
+    // Create an array to store all locations from table
     const locArray = [];
+    // For the whole table, get the string locaiton for each food
     while (x < rows.length){
         let loc = rows[x].innerHTML;
         locArray.push(loc);
         x = x + 4;
     }
     console.log(locArray)
+    // Create counter
     let count = 1;
+    // Select the table rows
     let tr = document.querySelectorAll('tr')
+    // For each locaiton in the location array
     for(let loc of locArray){
+        // Variable for each row to select the row
         let y = tr[count];
+        console.log(y)
+        // If the button array active locations includes the location from the food table
         if(activeLocations.includes(loc)){
             console.log("Visible", loc)
-            y.style.visibility = 'visible';
+            // Show the foods if the button is checked
+            y.style.display = null;
         }else{
             console.log("not visible", loc)
-            y.style.visibility = 'collapse';
+            // Collapes if the button is not checked
+            y.style.display = 'none';
         }
     }
+    // Increment to get to the next row
     count ++;
     
 };
