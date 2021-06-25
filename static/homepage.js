@@ -24,35 +24,34 @@ for (let dateExp of expDateArray) {
         counter ++;
 }
 
-// on change handler for .location-filter els
-// each .loc-filter has data-location="name of location"
-// func that takes in location name and boolean (hide/unhide)
-// showRowsByLocation(' Fridge', true) => show all ' Fridge' rows
-//                               false => hide
-//
 
-// Syntax for adding Bootstrap class to set display: none;
-// element.classList.add('d-none');
-// To remove class
-// element.classList.remove('d-none');
-
-function showRowsByLocation(loc, shouldHidden) {
+function hideRowsNotInLocations(locs) {
     const trs = document.querySelectorAll('.food-entry');
 
     const locRows = [];
     for (const tr of trs) {
-        if (getFoodRowLocation(tr).trim() === loc.trim()) {
+        if (!locs.includes(getFoodRowLocation(tr).trim())) {
             locRows.push(tr);
         }
     }
 
-    
     for (const location of locRows) {
-        if (shouldHidden) {
-            location.classList.add('d-none');
-        } else {
-            location.classList.remove('d-none');
+        location.classList.add('d-none');
+    }
+}
+
+function showRowsInLocations(locs) {
+    const trs = document.querySelectorAll('.food-entry');
+
+    const locRows = [];
+    for (const tr of trs) {
+        if (locs.includes(getFoodRowLocation(tr).trim())) {
+            locRows.push(tr);
         }
+    }
+
+    for (const location of locRows) {
+        location.classList.remove('d-none');
     }
 }
 
@@ -60,6 +59,48 @@ function getFoodRowLocation(trEl) {
     const td = trEl.querySelector('td[data-loc]');
     return td.dataset.loc;
 }
+
+// Return array of location names of filters that are checked
+function getActiveLocations() {
+    const locFilters = document.querySelectorAll('.location-filter');
+
+    const activeLocations = [];
+    for (const locFilter of locFilters) {
+        if (locFilter.checked) {
+            activeLocations.push(locFilter.dataset.location.trim());
+        }
+    }
+    return activeLocations;
+}
+
+// Select all .location-filter elements
+// loop over them
+// call addEventListener('change', (evt) => {}) on each
+
+function initializeLocationFilters() {
+    const locFilters = document.querySelectorAll('.location-filter');
+
+    // hideRowsNotInLocations(locs) => undefined
+    // getActiveLocations() => ['Pantry', 'Freezer']
+
+    for (const locFilter of locFilters) {
+        locFilter.addEventListener('change', () => {
+            console.log(`in the onchange handler for ${locFilter}`);
+            const activeLocations = getActiveLocations();
+
+            hideRowsNotInLocations(activeLocations);
+            showRowsInLocations(activeLocations);
+        });
+    }
+}
+initializeLocationFilters();
+
+
+// each .loc-filter has data-location="name of location"
+// func that takes in location name and boolean (hide/unhide)
+// showRowsByLocation(' Fridge', true) => show all ' Fridge' rows
+//                               false => hide
+//
 
 // function showAll() {
 //     let x = document.getElementById("myDiv");
