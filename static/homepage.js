@@ -47,11 +47,28 @@ function showRowsInLocations(locs) {
     for (const tr of trs) {
         if (locs.includes(getFoodRowLocation(tr).trim())) {
             locRows.push(tr);
-        }
+        } 
     }
+
 
     for (const location of locRows) {
         location.classList.remove('d-none');
+    }
+}
+
+function showAllRows() {
+    const trs = document.getElementsByClassName('food-entry');
+
+    const locRows = [];
+    for (const tr of trs) {
+        locRows.push(tr);
+    }
+
+    for (const location of locRows) {
+        console.log(location.classList.remove("d-none"));
+        console.log(location);
+        console.log(location.classList);
+        console.log("SHOWING ALL");
     }
 }
 
@@ -85,11 +102,20 @@ function initializeLocationFilters() {
 
     for (const locFilter of locFilters) {
         locFilter.addEventListener('change', () => {
-            console.log(`in the onchange handler for ${locFilter}`);
             const activeLocations = getActiveLocations();
+            
+            
+            
+            // if no active locations if active locations length is 0
+            if (activeLocations.length == 0){
+                console.log(activeLocations);
+                showAllRows();
+            } else {
+            // showRowsInLocations()
 
-            hideRowsNotInLocations(activeLocations);
-            showRowsInLocations(activeLocations);
+                hideRowsNotInLocations(activeLocations);
+                showRowsInLocations(activeLocations);
+            }
         });
     }
 }
