@@ -24,6 +24,7 @@
 
 {% block body %}
 {% if current_user.is_authenticated %}
+<img src="{{ user_img }}" alt="user_img">
 Welcome {{ current_user.user_name }}
 {% endif %}
 <h1>This is all the food you have!</h1>

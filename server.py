@@ -35,6 +35,9 @@ def show_homepage():
     if current_user.is_authenticated:
         user_id = current_user.get_id()
 
+        user = crud.get_user_by_id(user_id)
+        user_img = user.user_img
+
         # Returns a list of user_food objects for the user
         user_food = crud.get_user_food(user_id)
    
@@ -64,7 +67,8 @@ def show_homepage():
                 food_by_user.append((food_id, food_name, loc_name, str_exp, user_food_id))
 
         return render_template("homepage.html",
-                                food_by_user = food_by_user)
+                                food_by_user = food_by_user,
+                                user_img = user_img)
     
     else:
         return redirect("/login")
@@ -94,6 +98,8 @@ def register_process():
     user_name = request.form.get("user_name")
     email = request.form.get("email")
     password = request.form.get("password")
+    user_img = request.form.get("user_img")
+
     user = crud.get_user_by_email(email)
 
     if user:
@@ -101,7 +107,7 @@ def register_process():
 
         return redirect('/register')
     else:
-        crud.create_user(user_name, email, password)
+        crud.create_user(user_name, email, password, user_img)
         flash("Account created! Please log in.")
 
         return redirect('/login')

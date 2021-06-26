@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
                          nullable = False)
     user_name = db.Column(db.String(20),
                           nullable = False)
+    user_img = db.Column(db.String)
     phone = db.Column(db.Integer(),
                       nullable = True)
     pref_contact = db.Column(db.String(5))
