@@ -239,10 +239,11 @@ def add_item_to_db():
     # Get the food_name
     food_name= lst[:-2]
     #make food_name into a string. It is a list right now
-    str_food = ""
-    for item in food_name:
-        str_food = str_food + item
-    # Get food_loc
+    str_food = "".join(food_name)
+    # Fix for foods that include em dash 
+    lst_str_food = str_food.split('\u2014')
+    edit_str_food = "".join(lst_str_food)
+    
     food_loc = lst[-2]
 
     # Get expiration time 
@@ -257,13 +258,13 @@ def add_item_to_db():
         loc_id = loc.loc_id
 
     # Check if food exists
-    new_food = crud.get_food_by_name(str_food)
+    new_food = crud.get_food_by_name(edit_str_food)
     # If no food exists, create a new food
     if new_food == None:
-        new_food = crud.create_food(str_food, exp_time, loc_id)
+        new_food = crud.create_food(edit_str_food, exp_time, loc_id)
     # Else if the name exists, but the location is different, create new food
     elif str_food == new_food.food_name and new_food.loc_id != loc.loc_id:
-        new_food = crud.create_food(str_food, exp_time, loc_id)
+        new_food = crud.create_food(edit_str_food, exp_time, loc_id)
     # Get user_id
     user_id = current_user.get_id()
     # Get food_id from food table
