@@ -24,10 +24,14 @@ for (let dateExp of expDateArray) {
         counter ++;
 }
 
+// ____________________ Functions for showing/hiding rows__________________________________//
 
+// Hides the rows in the table that are not checked (called in initializeLocationFilters)
 function hideRowsNotInLocations(locs) {
+    // Get the table rows
     const trs = document.querySelectorAll('.food-entry');
 
+    // Add the rows that are not in the given list
     const locRows = [];
     for (const tr of trs) {
         if (!locs.includes(getFoodRowLocation(tr).trim())) {
@@ -35,14 +39,18 @@ function hideRowsNotInLocations(locs) {
         }
     }
 
+    // Hide any row that is in the array
     for (const location of locRows) {
         location.classList.add('d-none');
     }
 }
 
+// Shows the rows in the table that are checked (called in initializeLocationFilters)
 function showRowsInLocations(locs) {
+    // Get the table rows
     const trs = document.querySelectorAll('.food-entry');
 
+    // Add the rows that are inclueded in the given array
     const locRows = [];
     for (const tr of trs) {
         if (locs.includes(getFoodRowLocation(tr).trim())) {
@@ -50,37 +58,41 @@ function showRowsInLocations(locs) {
         } 
     }
 
-
+    // Show any row that is in the list
     for (const location of locRows) {
         location.classList.remove('d-none');
     }
 }
 
+// Shows all the rows
 function showAllRows() {
-    const trs = document.getElementsByClassName('food-entry');
+    // Get all the table rows
+    const trs = document.querySelectorAll('.food-entry');
 
+    // Add all the rows to the new array
     const locRows = [];
     for (const tr of trs) {
         locRows.push(tr);
     }
 
+    // Show all the rows
     for (const location of locRows) {
-        console.log(location.classList.remove("d-none"));
-        console.log(location);
-        console.log(location.classList);
-        console.log("SHOWING ALL");
+        location.classList.remove("d-none");
     }
 }
 
 function getFoodRowLocation(trEl) {
+    // Select all the data cells with data-loc (location cells) and return them 
     const td = trEl.querySelector('td[data-loc]');
     return td.dataset.loc;
 }
 
 // Return array of location names of filters that are checked
 function getActiveLocations() {
+    // Get all the buttons
     const locFilters = document.querySelectorAll('.location-filter');
 
+    // Add each button that is checked and add it to array and return the array
     const activeLocations = [];
     for (const locFilter of locFilters) {
         if (locFilter.checked) {
@@ -90,29 +102,21 @@ function getActiveLocations() {
     return activeLocations;
 }
 
-// Select all .location-filter elements
-// loop over them
-// call addEventListener('change', (evt) => {}) on each
 
+// Has on change listener and actually changes the state of the page
 function initializeLocationFilters() {
+    // Get all the buttons
     const locFilters = document.querySelectorAll('.location-filter');
 
-    // hideRowsNotInLocations(locs) => undefined
-    // getActiveLocations() => ['Pantry', 'Freezer']
-
+    // Listen for a change on any of the buttons and get the active location
     for (const locFilter of locFilters) {
         locFilter.addEventListener('change', () => {
             const activeLocations = getActiveLocations();
             
-            
-            
-            // if no active locations if active locations length is 0
+            // If there are no active locations, show all. If there are active locations, show/hide appropriate rows
             if (activeLocations.length == 0){
-                console.log(activeLocations);
                 showAllRows();
             } else {
-            // showRowsInLocations()
-
                 hideRowsNotInLocations(activeLocations);
                 showRowsInLocations(activeLocations);
             }
