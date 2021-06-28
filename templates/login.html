@@ -3,6 +3,7 @@
 {% block title %} User food home {% endblock %}
 
 {% block body %}
+
 <h1>This is where you log in</h1>
 
 <h2>Navigation</h2>
@@ -11,6 +12,9 @@
     <li><a href = "/profile">profile</a></li>
 </ul>
 
+
+<div class="right">
+
 <h2>Log In</h2>
 
 <form action="/login" method="POST">
@@ -18,7 +22,7 @@
         Email <input type="text" name="email">
     </p>
     <p>
-        Password <input type="text" name="password">
+        Password <input type="password" name="password">
     </p>
     <p>
         <input type="submit">
@@ -26,5 +30,7 @@
 </form>
 
 <p>Are you new to our site? Click <a href='/register'>here</a> to register for an account.</p>
+
+</div>
 
 {% endblock %}

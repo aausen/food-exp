@@ -271,6 +271,23 @@ def display_profile():
                             email = email,
                             user_img = user_img)
 
+@app.route("/profile", methods=["POST"])
+def user_img_change():
+    """Change user image."""
+
+    user_id = current_user.get_id()
+    user = crud.get_user_by_id(user_id)
+
+    new_img = request.form.get("user_img")
+
+    user.user_img = new_img
+    db.session.add(user)
+    db.session.commit()
+
+    flash("Your image has been changed!")
+
+    return redirect("/profile")
+
 @app.route("/change-password", methods=["GET"])
 @fresh_login_required
 def change_password():
@@ -292,9 +309,7 @@ def user_password_change():
 
     user_id = current_user.get_id()
     user = crud.get_user_by_id(user_id)
-    user_name = user.user_name
-    user_email = user.email
-    user_img = user.user_img
+
 
     password1 = request.form.get("password1")
     password2 = request.form.get("password2")
