@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, g
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user, fresh_login_required
 from jinja2.runtime import StrictUndefined
-from model import connect_to_db, User, Location, User_food, Food
+from model import connect_to_db, User, Location, User_food, Food, db
 import crud
 from jinja2 import StrictUndefined
 import requests
@@ -296,11 +296,13 @@ def user_password_change():
     user_email = user.email
     user_img = user.user_img
 
-    password1 = request.forms.get("password1")
-    password2 = request.forms.get("password2")
+    password1 = request.form.get("password1")
+    password2 = request.form.get("password2")
 
     if password1 == password2:
         user.password = password1
+        db.session.add(user)
+        db.session.commit()
         flash("Your password has been changed!")
         return redirect ("/profile")
     else:
