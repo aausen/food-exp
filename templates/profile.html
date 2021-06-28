@@ -13,7 +13,7 @@
 
 <h2>This is your profile</h2>
 {% if current_user.is_authenticated %}
-<img src="{{ user_img }}" alt="user_img">
+<img class="profile" src="{{ user_img }}" alt="user_img">
 <p>Hello, {{ current_user.user_name }}</p>
 {% endif %}
 <p>If you would like to change your password, click <a href="/change-password">here.</a></p>
