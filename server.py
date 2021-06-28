@@ -1,7 +1,7 @@
 """Server for food expiration app"""
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, g
-from flask_login import LoginManager, login_user, login_required, current_user, logout_user
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user, fresh_login_required
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db, User, Location, User_food, Food
 import crud
@@ -258,16 +258,54 @@ def add_item_to_db():
 
     return redirect('/')
    
-
+#____________________________Profile___________________________________#
 @app.route("/profile")
 def display_profile():
     """Display the user profile page"""
     user_id = current_user.get_id()
     user = crud.get_user_by_id(user_id)
     email = user.email
+    user_img = user.user_img
 
     return render_template("profile.html",
-                            email = email)
+                            email = email,
+                            user_img = user_img)
+
+@app.route("/change-password", methods=["GET"])
+@fresh_login_required
+def change_password():
+
+    user_id = current_user.get_id()
+    user = crud.get_user_by_id(user_id)
+    user_name = user.user_name
+    user_email = user.email
+    user_img = user.user_img
+
+    return render_template("change-password.html", 
+                            user_name = user_name,
+                            user_img = user_img)
+
+@app.route("/change-password", methods=["POST"])
+@fresh_login_required
+def user_password_change():
+    """Change user password."""
+
+    user_id = current_user.get_id()
+    user = crud.get_user_by_id(user_id)
+    user_name = user.user_name
+    user_email = user.email
+    user_img = user.user_img
+
+    password1 = request.forms.get("password1")
+    password2 = request.forms.get("password2")
+
+    if password1 == password2:
+        user.password = password1
+        flash("Your password has been changed!")
+        return redirect ("/profile")
+    else:
+        flash("The passwords you typed do not match. Please try again.")
+        return redirect("/change-password")
 
 
 if __name__ == '__main__':
