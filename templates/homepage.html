@@ -23,6 +23,18 @@
 {% endblock%}
 
 {% block body %}
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/static/img/tossitlogo.png" alt="" width="30" height="30">
+      </a>
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link" href="/profile">Profile</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 {% if current_user.is_authenticated %}
 <img class="profile" src="{{ user_img }}" alt="user_img">
 Welcome {{ current_user.user_name }}
@@ -34,6 +46,9 @@ Welcome {{ current_user.user_name }}
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+<form action="/logout">
+    <button type="submit">Log Out</button>
+</form>
 <div class = "container">
     <form action="/search">
         <input type="text" 
@@ -44,8 +59,7 @@ Welcome {{ current_user.user_name }}
     </form>
 </div>
 
-<!-- <button onclick="showFridge()">Refrigerator</button>
-<button onclick="showPantry()">Pantry</button> -->
+
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
     <input type="checkbox" class="location-filter btn-check" id="btncheck1" autocomplete="off" data-location=" Refrigerator">
     <label class="btn btn-outline-primary" for="btncheck1">Refrigerator</label>

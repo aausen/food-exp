@@ -10,6 +10,9 @@
     <li><a href = "/">food list</a></li>
     <li><a href = "/profile">profile</a></li>
 </ul>
+<form action="/logout">
+    <button type="submit">Log Out</button>
+</form>
 
 <h2>This is your profile</h2>
 {% if current_user.is_authenticated %}
