@@ -25,6 +25,12 @@ body {
     width: 100%;
 }
 
+.vertical-center {
+
+    top: 50%;
+ 
+  }
+
 .search {
     padding : 20px;
 }

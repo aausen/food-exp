@@ -19,6 +19,7 @@ for (let dateExp of expDateArray) {
     dateExp = new Date(dateExp);
     if(timeNow >= dateExp){
         expDateObjs[counter].style.color = 'red';
+        expDateObjs[counter].classList.add("table-danger");
         }
         
         counter ++;
