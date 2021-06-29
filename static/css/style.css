@@ -1,5 +1,7 @@
 body {
-    padding: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .right {
@@ -23,3 +25,11 @@ body {
     width: 100%;
 }
 
+.search {
+    padding : 20px;
+}
+
+.navbar {
+    background-color: #39b7b1;
+    color: #7ed957;
+}

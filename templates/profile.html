@@ -3,18 +3,7 @@
 {% block title %} User food home {% endblock %}
 
 {% block body %}
-<h1>This is the user profile</h1>
 
-<h2>Navigation</h2>
-<ul>
-    <li><a href = "/">food list</a></li>
-    <li><a href = "/profile">profile</a></li>
-</ul>
-<form action="/logout">
-    <button type="submit">Log Out</button>
-</form>
-
-<h2>This is your profile</h2>
 {% if current_user.is_authenticated %}
 <img class="profile" src="{{ user_img }}" alt="user_img">
 <p>Hello, {{ current_user.user_name }}</p>

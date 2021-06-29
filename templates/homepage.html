@@ -33,11 +33,9 @@ Welcome {{ current_user.user_name }}
 {% endif %}
 <h1>This is all the food you have!</h1>
 
-<form action="/logout">
-    <button type="submit">Log Out</button>
-</form>
+
 <div class = "container">
-    <form action="/search">
+    <form class="search" action="/search">
         <input type="text" 
                name="searchBar"
                id="searchBar"
