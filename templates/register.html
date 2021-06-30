@@ -24,22 +24,32 @@
     </p>
     <p>
         Select an image:
-        <label>
-            <input type="radio" name="user_img" value="/static/img/delivery.jpg">
-            <img class="profile" src="/static/img/delivery.jpg" alt="Delivery Driver">
-        </label>
-        <label>
-            <input type="radio" name="user_img" value="/static/img/pizza.jpg">
-            <img class="profile" src="/static/img/pizza.jpg" alt="Pizza">
-        </label>
-        <label>
-            <input type="radio" name="user_img" value="/static/img/astronaut.jpg">
-            <img class="profile" src="/static/img/astronaut.jpg" alt="Astronaut Eating a Hambuger">
-        </label>
-        <label>
-            <input type="radio" name="user_img" value="/static/img/octopus.jpg">
-            <img class="profile" src="/static/img/octopus.jpg" alt="Octopus Chef">
-        </label>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <label>
+                <input class="btn-check" type="radio" name="user_img" id="delivery" value="/static/img/delivery.jpg">
+                <label for="delivery">
+                    <img class="select-img" src="/static/img/delivery.jpg" alt="Delivery Driver">
+                </label>
+            </label>
+            <label>
+                <input class="btn-check" type="radio" name="user_img" id="pizza" value="/static/img/pizza.jpg">
+                <label for="pizza">
+                    <img class="select-img" src="/static/img/pizza.jpg" alt="Pizza">
+                </label>
+            </label>
+            <label>
+                <input class="btn-check" type="radio" name="user_img" id="astronaut" value="/static/img/astronaut.jpg">
+                <label for="astronaut">
+                    <img class="select-img" src="/static/img/astronaut.jpg" alt="Astronaut Eating a Hambuger">
+                </label>
+            </label>
+            <label>
+                <input class="btn-check" type="radio" name="user_img" id="octopus" value="/static/img/octopus.jpg">
+                <label for ="octopus">
+                    <img class="select-img" src="/static/img/octopus.jpg" alt="Octopus Chef">
+                </label>
+            </label>
+        </div>
         
     </p>
     <p>

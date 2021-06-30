@@ -23,24 +23,27 @@
     </head>
     <body>
         {% if current_user.is_authenticated %}
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="navbar-brand" href="/">
-                    <img src="/static/img/tossitlogo.png" alt="" width="30" height="30">
-                  </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <img src="/static/img/tossitlogo.png" alt="" width="30" height="30">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/">Home</a>
-                  <a class="nav-link" href="/profile">Profile</a>
-                  <div class="d-flex right">
-                    <form action="/logout">
-                      <button type="submit">Log Out</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+                </li>
+              </ul>
+              <form class="d-flex" action="/logout">
+                <button type="submit">Log Out</button>
+              </form>
             </div>
-          </nav>
+          </div>
+        </nav>
+        
           {% endif %}
         {% for msg in get_flashed_messages() %}
         <p class="flash-msg">

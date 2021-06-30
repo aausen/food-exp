@@ -37,3 +37,14 @@ body {
     background-color: #39b7b1;
     color: #7ed957;
 }
+
+.select-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.select-img:checked {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
