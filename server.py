@@ -128,7 +128,7 @@ def login_process():
     user = crud.get_user_by_email(email)
     
     if user == None:
-        flash("That is not a valid email. Please try again.")
+        flash("That is not valid log in information. Please try again.")
         return redirect("/login")
     elif user.password == password:
 

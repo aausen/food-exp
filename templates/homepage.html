@@ -69,6 +69,13 @@ Welcome {{ current_user.user_name }}
             <th>Delete</th>
         </tr>
         {% for food_id, name, loc, exp, user_food_id in food_by_user %}
+        {% if food_by_user == None %}
+            <p>
+                It looks like your fridge is empty! Use the search bar to add some food to your fridge.
+                <img src="" alt="Empty fridge">
+            </p>
+
+        {% else %}
         <tr class="food-entry">
         
         <td>{{ name }}</td>
@@ -77,6 +84,7 @@ Welcome {{ current_user.user_name }}
         <td><form action="/delete" method="POST"><button type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
         
         </tr>
+        {% endif %}
         {% endfor %}
     </table>
        
