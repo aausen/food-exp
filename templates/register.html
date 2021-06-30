@@ -14,16 +14,16 @@
 <h2>Create an account</h2>
 <form action="/register" method="POST">
     <p>
-        Username<input type="text" name="user_name">
+        <input class="rounded" type="text" name="user_name" placeholder="Username" required>*
     </p>
     <p>
-        Email <input type="text" name="email">
+        <input class="rounded" type="text" name="email" placeholder="Email" required>*
     </p>
     <p>
-        Password <input type="password" name="password">
+        <input class="rounded" type="password" name="password" placeholder="Password" required>*
     </p>
     <p>
-        Select an image:
+        Select an image:*
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
             <label>
                 <input class="btn-check" type="radio" name="user_img" id="delivery" value="/static/img/delivery.jpg">
@@ -50,7 +50,9 @@
                 </label>
             </label>
         </div>
-        
+    <div>
+    * Indicates a required field.
+    </div>
     </p>
     <p>
         <input type="submit">
