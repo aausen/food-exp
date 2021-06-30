@@ -5,9 +5,7 @@ body {
 }
 
 .right {
-    float: right;
-    width: 300px;
-
+    right: 0;
 }
 
 .profile {
