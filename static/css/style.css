@@ -29,7 +29,7 @@ body {
 }
 
 .navbar {
-    background-color: #39b7b1;
+    background-color: primary;
     
 }
 
@@ -84,3 +84,6 @@ body {
     height: 394px;
 } */
 
+input[type=text] {
+    padding-bottom: 2px;
+}

@@ -3,15 +3,15 @@
 {% block title %} User food home {% endblock %}
 
 {% block body %}
-<h1>This is for a new user</h1>
 
-<h2>Navigation</h2>
-<ul>
-    <li><a href = "/login">Login</a></li>
-    
-</ul>
 
-<h2>Create an account</h2>
+<h1>Create an account</h1>
+
+<a href = "/login">Login</a>
+
+<div></div>    
+
+
 <form action="/register" method="POST">
     <p>
         <input class="border border-primary rounded" type="text" name="user_name" placeholder="Username" required>*
@@ -24,27 +24,27 @@
     </p>
     <p>
         Select an image:*
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <div class="btn-group" role="group">
             <label>
-                <input class="btn-check" type="radio" name="user_img" id="delivery" value="/static/img/delivery.jpg">
+                <input  type="radio" name="user_img" id="delivery" value="/static/img/delivery.jpg">
                 <label for="delivery">
                     <img class="select-img" src="/static/img/delivery.jpg" alt="Delivery Driver">
                 </label>
             </label>
             <label>
-                <input class="btn-check" type="radio" name="user_img" id="pizza" value="/static/img/pizza.jpg">
+                <input type="radio" name="user_img" id="pizza" value="/static/img/pizza.jpg">
                 <label for="pizza">
                     <img class="select-img" src="/static/img/pizza.jpg" alt="Pizza">
                 </label>
             </label>
             <label>
-                <input class="btn-check" type="radio" name="user_img" id="astronaut" value="/static/img/astronaut.jpg">
+                <input type="radio" name="user_img" id="astronaut" value="/static/img/astronaut.jpg">
                 <label for="astronaut">
                     <img class="select-img" src="/static/img/astronaut.jpg" alt="Astronaut Eating a Hambuger">
                 </label>
             </label>
             <label>
-                <input class="btn-check" type="radio" name="user_img" id="octopus" value="/static/img/octopus.jpg">
+                <input type="radio" name="user_img" id="octopus" value="/static/img/octopus.jpg">
                 <label for ="octopus">
                     <img class="select-img" src="/static/img/octopus.jpg" alt="Octopus Chef">
                 </label>
@@ -55,7 +55,7 @@
     </div>
     </p>
     <p>
-        <input type="submit">
+        <button class="btn btn-outline-primary" type="submit">Sign Up</button>
     </p>
 </form>
 

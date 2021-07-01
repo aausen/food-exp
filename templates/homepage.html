@@ -48,7 +48,7 @@
                 name="searchBar"
                 id="searchBar"
                 placeholder="Search for food"/>
-            <button type="submit">Submit</button>
+            <button class="btn btn-outline-primary" type="submit">Submit</button>
         </form>
     </div>
 </div>
@@ -78,7 +78,7 @@
         <td>{{ name }}</td>
         <td data-loc="{{ loc }}">{{ loc }}</td>
         <td>{{ exp }}</td>
-        <td><form action="/delete" method="POST"><button type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
+        <td><form action="/delete" method="POST"><button class="btn btn-outline-primary" type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
         
         </tr>
         {% endif %}
