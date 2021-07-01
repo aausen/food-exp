@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-7">
+        <div class="col-6">
             <h1>Food search results:</h1>
             <form action="/add-item">
                 {% for id, name in food_choice.items() %}
@@ -16,7 +16,7 @@
                 <input type="submit">
             </form>
         </div>
-        <div class="row col-5">
+        <div class="row col-6">
             <img class="var-food img-fluid" src="/static/img/food.jpg" alt="various food">
         </div>
     </div>

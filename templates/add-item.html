@@ -4,7 +4,7 @@
 
 {% block body %}
 
-
+<img class="toast mx-auto img-fluid" src="/static/img/toast.jpg" alt="toast">
 
 <h2>{{ name }}</h2>
 <a href="/">Search</a>
@@ -13,12 +13,14 @@
     <p>
         Select a place to store your food
     </p>
-    {% for item in info %}
-    <input type="radio" name="add-food" value="{{ name }}, {{ item[0] }}, {{ item[2] }}">
-    <label>{{ item[0] }}</label>
-    {% endfor %}
-  
-    <button type="submit">Add food</button>
+    <fieldset>
+        {% for item in info %}
+        <input type="radio" name="add-food" value="{{ name }}, {{ item[0] }}, {{ item[2] }}">
+        <label>{{ item[0] }}</label>
+        {% endfor %}
+    
+        <button type="submit">Add food</button>
+    </fieldset>
 </form>
 
 <p>
