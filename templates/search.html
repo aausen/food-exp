@@ -3,14 +3,22 @@
 {% block title %} User food home {% endblock %}
 
 {% block body %}
-
-<h1>Food search results:</h1>
-<form action="/add-item">
-    {% for id, name in food_choice.items() %}
-    <input type="radio" name="select-food" value="{{ id }}">
-    <label>{{ name }}</label>
-    <br>
-    {% endfor %}
-    <input type="submit">
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7">
+            <h1>Food search results:</h1>
+            <form action="/add-item">
+                {% for id, name in food_choice.items() %}
+                <input class="text-wrap" type="radio" name="select-food" value="{{ id }}">
+                <label>{{ name }}</label>
+                <br>
+                {% endfor %}
+                <input type="submit">
+            </form>
+        </div>
+        <div class="row col-5">
+            <img class="var-food img-fluid" src="/static/img/food.jpg" alt="various food">
+        </div>
+    </div>
+</div>
 {% endblock %}
