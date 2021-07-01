@@ -21,7 +21,7 @@ def send_email(user_email, food_name):
         from_email=sent_email,
         to_emails=user_email,
         subject=f"Time to toss the {food_name}",
-        html_content=f"Your {food_name} has gone bad. It is time to toss that food!")
+        html_content=f"Your {food_name} has gone bad. It is time to toss it!")
     try:
         sg = SendGridAPIClient(API_KEY)
         response = sg.send(message)

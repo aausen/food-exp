@@ -37,6 +37,12 @@
                   <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                 </li>
               </ul>
+              <div class="d-flex">
+                <div class="login-name row align-items-center">
+                  {{ current_user.user_name }}
+                </div> 
+                <img class="nav-img" src="{{ user_img }}" alt="user_img">
+              </div>
               <form class="d-flex" action="/logout">
                 <button type="submit">Log Out</button>
               </form>
@@ -44,6 +50,9 @@
           </div>
         </nav>
         
+        
+
+
           {% endif %}
         {% for msg in get_flashed_messages() %}
         <p class="flash-msg">
@@ -56,5 +65,12 @@
         {% block body %}{% endblock %}
 
         {% block after_body %}{% endblock %}
+        {% if current_user.is_authenticated %}
+        <div class="card">
+          <div class="card-footer">
+            <p><span>Track your food, clean out your fridge!</span>  <span class="text-center">Toss it!</span>    <span class="text-end"><a href="/">Home</a></span></p>
+          </div>
+        </div>
+        {% endif %}
     </body>
 </html>

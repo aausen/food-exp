@@ -154,6 +154,12 @@ def logout():
 @app.route("/search")
 def food_search():
     """Search the api for possible foods"""
+    user_id = current_user.get_id()
+
+    user = crud.get_user_by_id(user_id)
+    user_img = user.user_img
+
+
     input_food = request.args.get("searchBar") 
 
     # Define the search url
@@ -175,11 +181,17 @@ def food_search():
         food_choice[food_id] = food_name
    
     return render_template('search.html',
-                            food_choice = food_choice)
+                            food_choice = food_choice,
+                            user_img = user_img)
 
 @app.route("/add-item", methods=["GET"])
 def add_item():
     """Gets and displays food information on add food page"""
+
+    user_id = current_user.get_id()
+
+    user = crud.get_user_by_id(user_id)
+    user_img = user.user_img
 
     food_id = request.args.get("select-food")
     # Get the input from the user
@@ -208,7 +220,8 @@ def add_item():
                             name = name,
                             info = info,
                             tips = tips, 
-                            food_id = food_id)
+                            food_id = food_id,
+                            user_img = user_img)
 
 @app.route("/add-item", methods=["POST"])
 def add_item_to_db():

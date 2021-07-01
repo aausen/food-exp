@@ -31,33 +31,36 @@
 <img class="profile" src="{{ user_img }}" alt="user_img">
 Welcome {{ current_user.user_name }}
 {% endif %}
-<!-- <h1>This is all the food you have!</h1> -->
 
 
-<div class = "container">
-    <form class="search" action="/search">
-        <input type="text" 
-               name="searchBar"
-               id="searchBar"
-               placeholder="Search for food"/>
-        <button type="submit">Submit</button>
-    </form>
-</div>
 
 
-<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-    <input type="checkbox" class="location-filter btn-check" id="btncheck1" autocomplete="off" data-location=" Refrigerator">
-    <label class="btn btn-outline-primary" for="btncheck1">Refrigerator</label>
-  
-    <input type="checkbox" class="location-filter btn-check" id="btncheck2" autocomplete="off" data-location=" Freezer">
-    <label class="btn btn-outline-primary" for="btncheck2">Freezer</label>
-  
-    <input type="checkbox" class="location-filter btn-check" id="btncheck3" autocomplete="off" data-location=" Pantry">
-    <label class="btn btn-outline-primary" for="btncheck3">Pantry</label>
+
+<div class="container" style="height:70px">
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="checkbox" class="location-filter btn-check" id="btncheck1" autocomplete="off" data-location=" Refrigerator">
+        <label class="btn btn-outline-primary" for="btncheck1">Refrigerator</label>
+    
+        <input type="checkbox" class="location-filter btn-check" id="btncheck2" autocomplete="off" data-location=" Freezer">
+        <label class="btn btn-outline-primary" for="btncheck2">Freezer</label>
+    
+        <input type="checkbox" class="location-filter btn-check" id="btncheck3" autocomplete="off" data-location=" Pantry">
+        <label class="btn btn-outline-primary" for="btncheck3">Pantry</label>
+    </div>
+
+    <div style="float:right">
+        <form class="search" action="/search">
+            <input type="text" 
+                name="searchBar"
+                id="searchBar"
+                placeholder="Search for food"/>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </div>
 
 <section>
-    <h2>Here is all the food you have:</h2>
+    <h2>Your food:</h2>
        
     
     <table class="table table-striped table-bordered" width=100%>
@@ -72,7 +75,7 @@ Welcome {{ current_user.user_name }}
         {% if food_by_user == None %}
             <p>
                 It looks like your fridge is empty! Use the search bar to add some food to your fridge.
-                <img src="" alt="Empty fridge">
+                <img src="static/img/empty_fridge.jpg" alt="Empty fridge">
             </p>
 
         {% else %}
