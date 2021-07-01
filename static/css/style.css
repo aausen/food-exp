@@ -30,7 +30,7 @@ body {
 
 .navbar {
     background-color: #39b7b1;
-    color: #7ed957;
+    
 }
 
 .select-img {
@@ -62,4 +62,13 @@ body {
 .login-name {
     font-size: 30px;
     padding: 10px;
+}
+
+.footer {
+    background-color: #39b7b1;
+}
+
+.kitchen {
+    height: 300px;
+    width: 600px;
 }
