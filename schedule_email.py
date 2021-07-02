@@ -17,11 +17,14 @@ sent_email = os.environ['sent_email']
 def send_email(user_email, food_name):
     """Send email to user that food is expired."""
 
+    user = crud.get_user_by_email(user_email)
+    user_name = user.user_name
+
     message = Mail(
         from_email=sent_email,
         to_emails=user_email,
-        subject=f"Time to toss the {food_name}",
-        html_content=f"Your {food_name} has gone bad. It is time to toss it!")
+        subject=f"Time to the {food_name}",
+        html_content=f"Hi {user_name}, Your {food_name} has gone bad. It is time to toss it!  Thanks for being a part of Toss It!")
     try:
         sg = SendGridAPIClient(API_KEY)
         response = sg.send(message)
@@ -73,8 +76,6 @@ def job():
         print("!"*20)
         print(item[2], now)
         print("!"*20)
-        print("$"*20)
-        print("user:", item[1])
         # Compare datetime objects, send email if the current date is the expiration date
         if exp_date == now:
             send_email(item[1], item[2])
