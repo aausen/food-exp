@@ -73,6 +73,8 @@ def job():
         print("!"*20)
         print(item[2], now)
         print("!"*20)
+        print("$"*20)
+        print("user:", item[1])
         # Compare datetime objects, send email if the current date is the expiration date
         if exp_date == now:
             send_email(item[1], item[2])

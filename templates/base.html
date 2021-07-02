@@ -24,10 +24,10 @@
     <body class="d-flex flex-column h-100">
       <header>
         {% if current_user.is_authenticated %}
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-expand-md navbar-light">
           <div class="container-fluid">
             <a class="navbar-brand" href="/">
-              <img src="/static/img/tossitlogo.png" alt="" width="30" height="30">
+              <img src="/static/img/tossitlogo.png" alt="" width="50" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -75,7 +75,10 @@
         {% if current_user.is_authenticated %}
         <footer class="footer mt-auto">
           <div class= "container">
-            <p style="width:100%"><span>Track your food, clean out your fridge!</span>  <span class="text-center">Toss it!</span>    <span class="text-end"><a href="/">Home</a></span></p>
+            <p style="width:100%"><span>Track your food, clean out your fridge!</span>  
+              <span class="text-center">Toss it!</span>    
+              <span class="text-end"><a href="/">Home</a></span>
+            </p>
           </div>
         </footer>
         {% endif %}

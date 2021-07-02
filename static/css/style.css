@@ -33,8 +33,9 @@ body {
 }
 
 .navbar {
-    background-color: primary;
-    background-color: aquamarine;
+    background-color: #e3f2fd;
+    font-size: 25px;
+  
     
 }
 
@@ -65,12 +66,12 @@ body {
 }
 
 .login-name {
-    font-size: 30px;
+    font-size: 25px;
     padding: 10px;
 }
 
 .footer {
-    background-color: #39b7b1;
+    background-color: #e3f2fd;
 }
 
 .kitchen {
