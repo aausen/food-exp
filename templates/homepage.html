@@ -56,37 +56,46 @@
 <section>
     <h2>Your food:</h2>
        
-    
     <table class="table table-striped table-bordered" width=100%>
-    
-        <tr>
-            <th>Food name</th>
-            <th>Location</th>
-            <th>Expiration Date</th>
-            <th>Delete</th>
-        </tr>
+        
+        <thead class="undefined sticky-header">
+            <tr>
+                <th>Food name</th>
+                <th>Location</th>
+                <th>Expiration Date</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
         {% if food_by_user|count < 1 %}
-        
-        
-            <p>
-                It looks like your fridge is empty! Use the search bar to add some food to your fridge.
-                <img src="static/img/empty_fridge.jpg" alt="Empty fridge" width="300">
-            </p>
+            </table>
+            <div class="text-center">
+                <p>
+                    It looks like your fridge is empty! Use the search bar to add some food to your fridge.
+                </p>
+                <p>
+                    <img class="rounded" src="static/img/empty_fridge.jpg" alt="Empty fridge" width="300">
+                </p>
+            </div>
 
         {% else %}
+            <tbody>
             {% for food_id, name, loc, exp, user_food_id in food_by_user %}
-                <tr class="food-entry">
-                
-                <td>{{ name }}</td>
-                <td data-loc="{{ loc }}">{{ loc }}</td>
-                <td>{{ exp }}</td>
-                <td><form action="/delete" method="POST"><button class="btn btn-outline-primary" type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
-                
-                </tr>
+                    
+                    <tr class="food-entry">
+                        
+                    <td>{{ name }}</td>
+                    <td data-loc="{{ loc }}">{{ loc }}</td>
+                    <td>{{ exp }}</td>
+                    <td><form action="/delete" method="POST"><button class="btn btn-outline-primary" type="submit" name="delete-food" value="{{ user_food_id }}">Delete</button></form></td>
+                        
+                    </tr>
+                    
             {% endfor %}
+            </tbody>
         {% endif %}
-        
+            
     </table>
+    
        
     
 </section>
