@@ -66,8 +66,10 @@
         {% endfor %}
 
         
-
-        {% block body %}{% endblock %}
+        <div class="content-body">
+          {% block body %}{% endblock %}
+        </div>
+        
 
         {% block after_body %}{% endblock %}
         {% if current_user.is_authenticated %}

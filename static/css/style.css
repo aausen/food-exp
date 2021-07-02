@@ -1,5 +1,9 @@
 body {
     font-family: 'Roboto Condensed', sans-serif;
+    
+}
+
+.content-body {
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -30,6 +34,7 @@ body {
 
 .navbar {
     background-color: primary;
+    background-color: aquamarine;
     
 }
 
@@ -79,10 +84,10 @@ body {
 
 }
 
-/* .toast {
+.toast-mix {
     width: 634px;
     height: 394px;
-} */
+}
 
 input[type=text] {
     padding-bottom: 2px;
