@@ -7,13 +7,14 @@ from model import connect_to_db, User, Location, User_food, Food, db
 import crud
 from jinja2 import StrictUndefined
 import requests
+import os
 
 
 
 
 
 app = Flask(__name__)
-app.secret_key = "dev" #add to secrets.sh
+app.secret_key = os.environ['secret_key']
 app.jinja_env.undefined = StrictUndefined
 JS_TESTING_MODE = False
 

@@ -15,6 +15,9 @@ ShelfLife, Twilio Sendgrid, Schedule
 ## Create an Account to Begin
 Users create an account to join the platform. 
 
+
+![](https://media.giphy.com/media/e2YE7ILFscoBa8X5zs/giphy.gif)
+
 ## Search for Foods 
 Users can search for foods they have in their home and select where they are keeping them.
 The shelf life is computed for them and will display on the homepage. 
