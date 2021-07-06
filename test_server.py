@@ -1,5 +1,6 @@
 """Test suite for testing server."""
 
+from flask import Flask
 import server
 import unittest
 import crud
@@ -44,7 +45,6 @@ class MyAppIntegrationTestCase(unittest.TestCase):
             
             self.assertEqual(302, result.status_code)
 
-    ## Throwing an error because I'm not sure how to fake that a user is logged in
 
     def test_login_get(self):
         result = self.client.get('/login')

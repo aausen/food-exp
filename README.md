@@ -11,3 +11,17 @@ Python, JavaScript, Flask, HTML, CSS, Jinja, Bootstrap, PostgreSQL, SQLAlchemy
 ShelfLife, Twilio Sendgrid, Schedule
 
 # Features
+
+## Create an Account to Begin
+Users create an account to join the platform. 
+
+## Search for Foods 
+Users can search for foods they have in their home and select where they are keeping them.
+The shelf life is computed for them and will display on the homepage. 
+
+## Notifications
+When the expiration date arrives the date on the user's homepage will turn red and an email will be sent to 
+the user's email they signed up with. 
+
+## Filter
+Users can select which location they want to view their food in and can toggle between them. 
