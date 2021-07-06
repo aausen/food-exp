@@ -2,10 +2,11 @@
 
 import server
 import unittest
-from flask_login import current_user
 import crud
 import model
 from test_data import example_data
+
+
 
 class MyAppIntegrationTestCase(unittest.TestCase):
     """Integration tests: testing Flask server."""
@@ -35,25 +36,25 @@ class MyAppIntegrationTestCase(unittest.TestCase):
         print("(tearDown ran)")
         return 
 
-    # def test_homepage(self):
-    #     result = self.client.get('/')
-    #     self.assertIn(b'<h2>Food list here</h2>', result.data)
+    def test_homepage(self):
+        with self.client:
+            result = self.client.post('/login', data={
+                'email': 'liz@test.com', 'password' : 'test'
+            })
+            
+            self.assertEqual(302, result.status_code)
 
     ## Throwing an error because I'm not sure how to fake that a user is logged in
 
     def test_login_get(self):
         result = self.client.get('/login')
         self.assertIn(b'<h2>Log In</h2>', result.data)
-        print("*"*30)
-        print("test_login", result.data)
-        print("*"*30)
+        
 
     def test_register(self):
         result = self.client.get('/register')
-        self.assertIn(b'<h2>Create an account</h2>', result.data)
-        print("*"*30)
-        print("test_register", result.data)
-        print("*"*30)
+        self.assertIn(b'<h1>Create an account</h1>', result.data)
+       
 
     # def test_register_form(self):
     #     result = self.client.get('register', data={'email' : 'test@test.test', 'password' : 'test', 'pref_contact' : 'email'})
