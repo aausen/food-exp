@@ -22,9 +22,16 @@ Users create an account to join the platform.
 Users can search for foods they have in their home and select where they are keeping them.
 The shelf life is computed for them and will display on the homepage. 
 
+
+![](https://media.giphy.com/media/VNMiXJeboWhgPzfBkV/giphy.gif)
+
 ## Notifications
 When the expiration date arrives the date on the user's homepage will turn red and an email will be sent to 
 the user's email they signed up with. 
 
+[](/static/img/turn-red.png)
+
 ## Filter
 Users can select which location they want to view their food in and can toggle between them. 
+
+![](https://media.giphy.com/media/yCt0x8sdI85KOAOngi/giphy.gif)
