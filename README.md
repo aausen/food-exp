@@ -1,4 +1,4 @@
-# Toss it!
+# Toss it! :wastebasket:
 
 Toss it is a web application that allows users to search and save foods they have in their home and will notify the user when it is no longer safe to eat. The user first searches for foods they have, then are prompted to select where they are keeping it. Using the ShelfLife API and Python’s datetime library, the shelf life for that particular food is calculated and stored in the PostgreSQL database. When the food expires, the date turns red on the homepage using Javascript’s date library and an email is sent to the user using Schedule and Twilio’s Sendgrid APIs. When the user logs in again, they are able to see all of their food and are then able to delete any that they have either finished or has gone bad.
 
@@ -60,16 +60,16 @@ Clone my github repo onto your local machine
 `` source env/bin/activate ``
 
 ## Install requirements
-`` pip install -r requirments.txt ``
+`` pip install -r requirements.txt ``
 
 ## Sign up for a Twilio Sendgrid account to send email notifications and reieve an API key
 
-## Save your Twilio Sendgrid API key and sender email in secrets.sh in the following format:
-`` export API_KEY="YourAPIKEy" ``
+## Save your Twilio Sendgrid API key and sender email in ``secrets.sh`` in the following format:
+`` export API_KEY="YourAPIKey" ``
 
 `` export sent_email="youremail@email.com" ``
 
-## Source your key from your secrets.sh file to your virtual env
+## Source your key from your ``secrets.sh`` file to your virtual env
 
 `` source secrets.sh ``
 
