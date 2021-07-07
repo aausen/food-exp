@@ -54,11 +54,35 @@ Clone my github repo onto your local machine
 ``git clone https://github.com/aausen/food-exp.git``
 
 ## Create a virtual enviroment
+`` virtualenv env ``
 
 ## Activate your virutal enviroment
+`` source env/bin/activate ``
 
 ## Install requirements
+`` pip install -r requirments.txt ``
 
 ## Sign up for a Twilio Sendgrid account to send email notifications and reieve an API key
+
+## Save your Twilio Sendgrid API key and sender email in secrets.sh in the following format:
+`` export API_KEY="YourAPIKEy" ``
+
+`` export sent_email="youremail@email.com" ``
+
+## Source your key from your secrets.sh file to your virtual env
+
+`` source secrets.sh ``
+
+## Create your database
+
+`` createdb food_exp ``
+
+``python3 -i model.py ``
+
+``  >> db.create_all() ``
+
+## Run the application
+
+`` python3 server.py ``
 
 ## Enjoy having fresh food and knowing when to Toss It!
