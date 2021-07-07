@@ -4,11 +4,21 @@ Toss it is a web application that allows users to search and save foods they hav
 
 # Tech Stack
 
-Python, JavaScript, Flask, HTML, CSS, Jinja, Bootstrap, PostgreSQL, SQLAlchemy
+- Python
+- JavaScript
+- Flask 
+- HTML 
+- CSS
+- Jinja
+- Bootstrap
+- PostgreSQL
+- SQLAlchemy
 
 # APIs Used
 
-ShelfLife, Twilio Sendgrid, Schedule
+- Shelf-Life
+- Twilio Sendgrid 
+- Schedule
 
 # Features
 
@@ -35,3 +45,20 @@ the user's email they signed up with.
 Users can select which location they want to view their food in and can toggle between them. 
 
 ![](https://media.giphy.com/media/yCt0x8sdI85KOAOngi/giphy.gif)
+
+# How to Install Toss It!
+
+## Clone repository
+Clone my github repo onto your local machine
+
+``git clone https://github.com/aausen/food-exp.git``
+
+## Create a virtual enviroment
+
+## Activate your virutal enviroment
+
+## Install requirements
+
+## Sign up for a Twilio Sendgrid account to send email notifications and reieve an API key
+
+## Enjoy having fresh food and knowing when to Toss It!
