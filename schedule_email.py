@@ -23,7 +23,7 @@ def send_email(user_email, food_name):
     message = Mail(
         from_email=sent_email,
         to_emails=user_email,
-        subject=f"Time to the {food_name}",
+        subject=f"Time to toss the {food_name}",
         html_content=f"Hi {user_name}, Your {food_name} has gone bad. It is time to toss it!  Thanks for being a part of Toss It!")
     try:
         sg = SendGridAPIClient(API_KEY)
