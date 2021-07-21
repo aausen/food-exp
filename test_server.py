@@ -39,9 +39,8 @@ class MyAppIntegrationTestCase(unittest.TestCase):
 
     def test_homepage(self):
         with self.client:
-            result = self.client.post('/login', data={
-                'email': 'liz@test.com', 'password' : 'test'
-            })
+            result = self.client.post('/login', data={'email': 'liz@test.com', 
+                                                    'password' : 'test'})
             
             self.assertEqual(302, result.status_code)
 
@@ -64,12 +63,13 @@ class MyAppIntegrationTestCase(unittest.TestCase):
     #     result = self.client.get('/search')
     #     self.assertEqual(200, result.status_code)
 
-    # def test_add_item(self):
-    #     result = self.client.get('/add-item')
-    #     self.assertIn(b'<p>Select a place to store your food</p>', result.data)
+    def test_add_item(self):
+        with self.client:
+            result = self.client.get('/add-item', data={'email': 'liz@test.com', 
+                                                        'password' : 'test'})
+            self.assertIn(b'<p>Select a place to store your food</p>', result.data)
 
-    ## Test_search and test_add_item are throwing errors because of the test db. Has old tables
-    ## without user img so it can't find user img
+   
 
     # def test_profile(self):
     #     result = self.client.get('/profile')

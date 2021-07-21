@@ -6,9 +6,10 @@ def example_data():
     """Creating some sample data."""
     
 
-    liz = User(user_id=1, email="liz@test.com", password="test", user_name="liz")
-    maggie = User(user_id=2, email="maggie@test.com", password="test", user_name="maggie")
-    nadine = User(user_id=3, email="nadine@test.com", password="test", user_name="nadine")
+    liz = User(user_id=1, email="liz@test.com", password="test", user_name="liz", user_img="pizza.jpg")
+    maggie = User(user_id=2, email="maggie@test.com", password="test", user_name="maggie", user_img="pizza.jpg")
+    nadine = User(user_id=3, email="nadine@test.com", password="test", user_name="nadine", user_img="pizza.jpg")
+
 
     fridge = Location(loc_id=1, loc_name="Refrigerator")
     freezer = Location(loc_id=2, loc_name="Freezer")
