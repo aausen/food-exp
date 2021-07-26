@@ -1,16 +1,20 @@
 """Server for food expiration app"""
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, g
-from flask_login import LoginManager, login_user, login_required, current_user, logout_user, fresh_login_required
+from flask_login import (
+    LoginManager, 
+    login_user, 
+    login_required, 
+    current_user, 
+    logout_user, 
+    fresh_login_required
+)
 from jinja2.runtime import StrictUndefined
 from model import connect_to_db, User, Location, User_food, Food, db
 import crud
 from jinja2 import StrictUndefined
 import requests
 import os
-
-
-
 
 
 app = Flask(__name__)
@@ -104,7 +108,9 @@ def register_process():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash("A user already exists with that email. Please use a different email or login with current email.")
+        flash(
+            "A user already exists with that email. Please use a different email or login with current email."
+        )
 
         return redirect('/register')
     else:
@@ -217,12 +223,14 @@ def add_item():
     tips = res['tips']
 
     
-    return render_template("add-item.html", 
-                            name = name,
-                            info = info,
-                            tips = tips, 
-                            food_id = food_id,
-                            user_img = user_img)
+    return render_template(
+        "add-item.html", 
+        name = name,
+        info = info,
+        tips = tips, 
+        food_id = food_id,
+        user_img = user_img,
+    )
 
 @app.route("/add-item", methods=["POST"])
 def add_item_to_db():
@@ -281,9 +289,7 @@ def display_profile():
     email = user.email
     user_img = user.user_img
 
-    return render_template("profile.html",
-                            email = email,
-                            user_img = user_img)
+    return render_template("profile.html", email = email, user_img = user_img)
 
 @app.route("/profile", methods=["POST"])
 def user_img_change():
@@ -312,9 +318,7 @@ def change_password():
     user_email = user.email
     user_img = user.user_img
 
-    return render_template("change-password.html", 
-                            user_name = user_name,
-                            user_img = user_img)
+    return render_template("change-password.html", user_name = user_name, user_img = user_img)
 
 @app.route("/change-password", methods=["POST"])
 @fresh_login_required

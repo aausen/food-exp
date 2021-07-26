@@ -85,4 +85,8 @@ Clone my github repo onto your local machine
 
 `` python3 server.py ``
 
+## View in browser
+
+Click the given link to localhost:5000 to view and run in your browser.
+
 ## Enjoy having fresh food and knowing when to Toss It!
