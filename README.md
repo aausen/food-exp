@@ -16,9 +16,9 @@ Toss it is a web application that allows users to search and save foods they hav
 
 # APIs Used
 
-- [Shelf-Life] (https://github.com/jcomo/shelf-life) 
-- [Twilio Sendgrid] (https://www.twilio.com/sendgrid/email-api)
-- [Schedule] (https://schedule.readthedocs.io/en/stable/)
+- [Shelf-Life](https://github.com/jcomo/shelf-life) 
+- [Twilio Sendgrid](https://www.twilio.com/sendgrid/email-api)
+- [Schedule](https://schedule.readthedocs.io/en/stable/)
 
 # Features
 
