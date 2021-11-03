@@ -21,6 +21,7 @@ class MyAppIntegrationTestCase(unittest.TestCase):
         with self.client as c:
             with c.session_transaction() as sess:
                 sess['user_id'] = 1
+        
                 
 
         model.connect_to_db(server.app, "postgresql:///test_fooddb")
@@ -32,6 +33,7 @@ class MyAppIntegrationTestCase(unittest.TestCase):
 
         model.db.create_all()
         example_data()
+        # user = crud.get_user_by_id(sess['user_id'])
 
     def tearDown(self):
         print("(tearDown ran)")
@@ -59,15 +61,16 @@ class MyAppIntegrationTestCase(unittest.TestCase):
         result = self.client.get('/register')
         self.assertEqual(200, result.status_code)
 
-    # def test_search(self):
-    #     result = self.client.get('/search')
-    #     self.assertEqual(200, result.status_code)
-
-    def test_add_item(self):
+    def test_search(self):
         with self.client:
-            result = self.client.get('/add-item', data={'email': 'liz@test.com', 
-                                                        'password' : 'test'})
-            self.assertIn(b'<p>Select a place to store your food</p>', result.data)
+            result = self.client.get('/search', data={'user': self.client})
+            self.assertEqual(200, result.status_code)
+
+    # def test_add_item(self):
+    #     with self.client:
+    #         result = self.client.get('/add-item', data={'email': 'liz@test.com', 
+    #                                                     'password' : 'test'})
+    #         self.assertIn(b'<p>Select a place to store your food</p>', result.data)
 
    
 
